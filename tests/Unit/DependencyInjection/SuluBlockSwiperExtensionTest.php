@@ -29,6 +29,7 @@ class SuluBlockSwiperExtensionTest extends TestCase
     {
         $this->extension->load([], $this->container);
         $meta = $this->container->getParameter('sulu_block_swiper.bundle_metadata');
+        self::assertIsArray($meta);
         self::assertArrayHasKey('bundle', $meta);
         self::assertArrayHasKey('package', $meta);
         self::assertArrayHasKey('blocks', $meta);
@@ -39,6 +40,7 @@ class SuluBlockSwiperExtensionTest extends TestCase
     {
         $this->extension->load([], $this->container);
         $meta = $this->container->getParameter('sulu_block_swiper.bundle_metadata');
+        self::assertIsArray($meta);
         self::assertSame('SuluBlockSwiperBundle', $meta['bundle']);
     }
 
@@ -46,6 +48,7 @@ class SuluBlockSwiperExtensionTest extends TestCase
     {
         $this->extension->load([], $this->container);
         $meta = $this->container->getParameter('sulu_block_swiper.bundle_metadata');
+        self::assertIsArray($meta);
         self::assertSame('depa-berlin/sulu-block-swiper', $meta['package']);
     }
 
@@ -53,6 +56,7 @@ class SuluBlockSwiperExtensionTest extends TestCase
     {
         $this->extension->load([], $this->container);
         $meta = $this->container->getParameter('sulu_block_swiper.bundle_metadata');
+        self::assertIsArray($meta);
         self::assertCount(8, $meta['blocks']);
     }
 
@@ -60,6 +64,7 @@ class SuluBlockSwiperExtensionTest extends TestCase
     {
         $this->extension->load([], $this->container);
         $meta = $this->container->getParameter('sulu_block_swiper.bundle_metadata');
+        self::assertIsArray($meta);
 
         $expected = [
             'block--swiper',
@@ -81,6 +86,7 @@ class SuluBlockSwiperExtensionTest extends TestCase
     {
         $this->extension->load([], $this->container);
         $meta = $this->container->getParameter('sulu_block_swiper.bundle_metadata');
+        self::assertIsArray($meta);
 
         self::assertArrayHasKey('block--swiper', $meta['children']);
         self::assertContains('block--swiper-slide-facts', $meta['children']['block--swiper']);
@@ -90,6 +96,7 @@ class SuluBlockSwiperExtensionTest extends TestCase
     {
         $this->extension->load([], $this->container);
         $meta = $this->container->getParameter('sulu_block_swiper.bundle_metadata');
+        self::assertIsArray($meta);
 
         self::assertArrayHasKey('block--swiper-3-image', $meta['children']);
         self::assertContains('block--swiper-3-image-slide', $meta['children']['block--swiper-3-image']);
@@ -99,6 +106,7 @@ class SuluBlockSwiperExtensionTest extends TestCase
     {
         $this->extension->load([], $this->container);
         $meta = $this->container->getParameter('sulu_block_swiper.bundle_metadata');
+        self::assertIsArray($meta);
 
         self::assertArrayHasKey('block--swiper-bg', $meta['children']);
         self::assertContains('block--swiper-bg-slide', $meta['children']['block--swiper-bg']);
@@ -108,6 +116,7 @@ class SuluBlockSwiperExtensionTest extends TestCase
     {
         $this->extension->load([], $this->container);
         $meta = $this->container->getParameter('sulu_block_swiper.bundle_metadata');
+        self::assertIsArray($meta);
 
         self::assertArrayHasKey('block--swiper-slide', $meta['children']);
         self::assertContains('block--swiper-slide-facts', $meta['children']['block--swiper-slide']);
