@@ -10,27 +10,17 @@ use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 
 class SuluBlockSwiperExtension extends Extension implements PrependExtensionInterface
 {
-    private const BLOCKS = [
-        'block--swiper', 'block--swiper-3-image',
-        'block--swiper-3-image-slide', 'block--swiper-bg',
-        'block--swiper-bg-slide', 'block--swiper-hero',
-        'block--swiper-slide', 'block--swiper-slide-facts',
-    ];
-
-    private const CHILDREN = [
-        'block--swiper'         => ['block--swiper-slide-facts'],
-        'block--swiper-slide'   => ['block--swiper-slide-facts'],
-        'block--swiper-3-image' => ['block--swiper-3-image-slide'],
-        'block--swiper-bg'      => ['block--swiper-bg-slide'],
-    ];
+    use BlockMetadataLoaderTrait;
 
     public function load(array $configs, ContainerBuilder $container): void
     {
+        $metadata = $this->loadMetadataFromXml(__DIR__ . '/../../Resources/config/blocks');
+
         $container->setParameter('sulu_block_swiper.bundle_metadata', [
             'bundle'   => 'SuluBlockSwiperBundle',
             'package'  => 'depa-berlin/sulu-block-swiper',
-            'blocks'   => self::BLOCKS,
-            'children' => self::CHILDREN,
+            'blocks'   => $metadata['blocks'],
+            'children' => $metadata['children'],
         ]);
     }
 

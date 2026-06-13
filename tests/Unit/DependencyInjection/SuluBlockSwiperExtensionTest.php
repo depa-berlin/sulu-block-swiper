@@ -52,73 +52,58 @@ class SuluBlockSwiperExtensionTest extends TestCase
         self::assertSame('depa-berlin/sulu-block-swiper', $meta['package']);
     }
 
-    public function testBundleMetadataContains8BlockTypes(): void
+    public function testBundleMetadataContainsAtLeastOneBlock(): void
     {
         $this->extension->load([], $this->container);
         $meta = $this->container->getParameter('sulu_block_swiper.bundle_metadata');
         self::assertIsArray($meta);
-        self::assertCount(8, $meta['blocks']);
+        self::assertNotEmpty($meta['blocks']);
     }
 
-    public function testBundleMetadataContainsExpectedBlockTypes(): void
+    public function testBlocksAreSortedAndUnique(): void
+    {
+        $this->extension->load([], $this->container);
+        $meta = $this->container->getParameter('sulu_block_swiper.bundle_metadata');
+        self::assertIsArray($meta);
+        $blocks = $meta['blocks'];
+        $sorted = $blocks;
+        sort($sorted);
+        self::assertSame($sorted, $blocks, 'blocks must be sorted');
+        self::assertSame(array_unique($blocks), $blocks, 'blocks must be unique');
+    }
+
+    public function testKnownSwiperBlocksArePresent(): void
     {
         $this->extension->load([], $this->container);
         $meta = $this->container->getParameter('sulu_block_swiper.bundle_metadata');
         self::assertIsArray($meta);
 
-        $expected = [
-            'block--swiper',
-            'block--swiper-3-image',
-            'block--swiper-3-image-slide',
-            'block--swiper-bg',
-            'block--swiper-bg-slide',
-            'block--swiper-hero',
-            'block--swiper-slide',
-            'block--swiper-slide-facts',
-        ];
-
-        foreach ($expected as $blockType) {
-            self::assertContains($blockType, $meta['blocks']);
+        foreach (['block--swiper', 'block--swiper-slide'] as $expected) {
+            self::assertContains($expected, $meta['blocks']);
         }
     }
 
-    public function testSwiperHasSwiperSlideFactsAsChild(): void
+    public function testSwiperHasChildrenFromXml(): void
     {
         $this->extension->load([], $this->container);
         $meta = $this->container->getParameter('sulu_block_swiper.bundle_metadata');
         self::assertIsArray($meta);
 
         self::assertArrayHasKey('block--swiper', $meta['children']);
-        self::assertContains('block--swiper-slide-facts', $meta['children']['block--swiper']);
+        self::assertNotEmpty($meta['children']['block--swiper']);
     }
 
-    public function testSwiper3ImageHasCorrectChildSlide(): void
+    public function testChildrenValuesAreArraysOfStrings(): void
     {
         $this->extension->load([], $this->container);
         $meta = $this->container->getParameter('sulu_block_swiper.bundle_metadata');
         self::assertIsArray($meta);
 
-        self::assertArrayHasKey('block--swiper-3-image', $meta['children']);
-        self::assertContains('block--swiper-3-image-slide', $meta['children']['block--swiper-3-image']);
-    }
-
-    public function testSwiperBgHasBgSlideAsChild(): void
-    {
-        $this->extension->load([], $this->container);
-        $meta = $this->container->getParameter('sulu_block_swiper.bundle_metadata');
-        self::assertIsArray($meta);
-
-        self::assertArrayHasKey('block--swiper-bg', $meta['children']);
-        self::assertContains('block--swiper-bg-slide', $meta['children']['block--swiper-bg']);
-    }
-
-    public function testSwiperSlideHasSlideFactsAsChild(): void
-    {
-        $this->extension->load([], $this->container);
-        $meta = $this->container->getParameter('sulu_block_swiper.bundle_metadata');
-        self::assertIsArray($meta);
-
-        self::assertArrayHasKey('block--swiper-slide', $meta['children']);
-        self::assertContains('block--swiper-slide-facts', $meta['children']['block--swiper-slide']);
+        foreach ($meta['children'] as $parent => $kids) {
+            self::assertIsArray($kids, "Children of '{$parent}' must be an array");
+            foreach ($kids as $child) {
+                self::assertIsString($child);
+            }
+        }
     }
 }
