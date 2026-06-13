@@ -1,0 +1,18 @@
+{% block swiper_slide_content_facts %}
+    {% set block_id = content._id|default %}
+    {% set image = sulu_resolve_media(content.image, app.request.locale) %}
+    {% set loading = content.loading|default('lazy') %}
+    <div class="block--swiper-slide-content-facts swiper-slide {{ content.attr_class|default('') }}" data-cms-block-id="{{ block_id }}" {{ sulu_block_preview(content) }}>
+        {% if image %}
+                <img src="{{ image.thumbnails['content-image'] }}" class="img-fluid"
+                     alt="{{ image.title|default('') }}" {% if image.description %}title="{{ image.description }}"{% endif %}
+                     loading="{{ loading }}" width="{{ image.properties.width }}" height="{{ image.properties.height }}">
+        {% endif %}
+        {% if content.title %}
+            <h4>{{ content.title|nl2br }}</h4>
+        {% endif %}
+        {% if content.text %}
+            <p>{{ content.text|nl2br }}</p>
+        {% endif %}
+    </div>
+{% endblock %}

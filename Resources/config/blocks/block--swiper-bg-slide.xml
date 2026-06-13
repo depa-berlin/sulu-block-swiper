@@ -1,0 +1,32 @@
+<?xml version="1.0" ?>
+<template xmlns="http://schemas.sulu.io/template/template"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xsi:schemaLocation="http://schemas.sulu.io/template/template http://schemas.sulu.io/template/template-1.0.xsd">
+
+    <key>block--swiper-bg-slide</key>
+
+    <meta>
+        <title lang="de">Hintergrundbild Slide</title>
+        <title lang="en">Background Image Slide</title>
+    </meta>
+
+    <tag name="sulu.block_preview" priority="512"/>
+
+    <properties>
+
+        <property name="image" type="single_media_selection" mandatory="true">
+            <meta>
+                <title lang="de">Hintergrundbild</title>
+                <title lang="en">Background image</title>
+            </meta>
+            <params>
+                <param name="types" value="image"/>
+                <param name="min" value="1"/>
+                <param name="max" value="1"/>
+            </params>
+            <tag name="sulu.block_preview" priority="512"/>
+        </property>
+
+    </properties>
+</template>

@@ -1,0 +1,149 @@
+<?xml version="1.0" ?>
+<template xmlns="http://schemas.sulu.io/template/template"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xsi:schemaLocation="http://schemas.sulu.io/template/template http://schemas.sulu.io/template/template-1.0.xsd">
+    <key>block--swiper-hero</key>
+    <meta>
+        <title lang="de">Swiper Hero</title>
+        <title lang="en">Swiper Hero</title>
+    </meta>
+
+    <properties>
+
+        <section name="slides_section">
+            <meta>
+                <title lang="de">Slides</title>
+                <title lang="en">Slides</title>
+            </meta>
+            <properties>
+                <block name="slides" default-type="block--hero-content" minOccurs="1">
+                    <meta>
+                        <title lang="de">Slides</title>
+                        <title lang="en">Slides</title>
+                    </meta>
+                    <params>
+                        <param name="block_id_generator" value="true"/>
+                    </params>
+                    <types>
+                        <type ref="block--hero-content"/>
+                    </types>
+                </block>
+            </properties>
+        </section>
+
+        <section name="slider_config">
+            <meta>
+                <title lang="de">Slider-Einstellungen</title>
+                <title lang="en">Slider settings</title>
+            </meta>
+            <properties>
+
+                <property name="effect" type="single_select">
+                    <meta>
+                        <title lang="de">Überblend-Effekt</title>
+                        <title lang="en">Transition effect</title>
+                    </meta>
+                    <params>
+                        <param name="default_value" value="fade"/>
+                        <param name="values" type="collection">
+                            <param name="fade">
+                                <meta>
+                                    <title lang="de">Fade (Überblenden)</title>
+                                    <title lang="en">Fade</title>
+                                </meta>
+                            </param>
+                            <param name="slide">
+                                <meta>
+                                    <title lang="de">Slide (Schieben)</title>
+                                    <title lang="en">Slide</title>
+                                </meta>
+                            </param>
+                        </param>
+                    </params>
+                </property>
+
+                <property name="loop" type="checkbox">
+                    <meta>
+                        <title lang="de">Endlos-Loop</title>
+                        <title lang="en">Infinite loop</title>
+                    </meta>
+                    <params>
+                        <param name="type" value="toggler"/>
+                        <param name="default_value" value="true"/>
+                    </params>
+                </property>
+
+                <property name="autoplay" type="checkbox">
+                    <meta>
+                        <title lang="de">Autoplay</title>
+                        <title lang="en">Autoplay</title>
+                    </meta>
+                    <params>
+                        <param name="type" value="toggler"/>
+                        <param name="default_value" value="true"/>
+                    </params>
+                </property>
+
+                <property name="autoplay_delay" type="number" visibleCondition="autoplay == true">
+                    <meta>
+                        <title lang="de">Autoplay-Pause (Millisekunden)</title>
+                        <title lang="en">Autoplay delay (milliseconds)</title>
+                    </meta>
+                    <params>
+                        <param name="min" value="1000"/>
+                        <param name="max" value="30000"/>
+                    </params>
+                </property>
+
+                <property name="speed" type="number">
+                    <meta>
+                        <title lang="de">Übergangsgeschwindigkeit (Millisekunden)</title>
+                        <title lang="en">Transition speed (milliseconds)</title>
+                    </meta>
+                    <params>
+                        <param name="min" value="100"/>
+                        <param name="max" value="3000"/>
+                    </params>
+                </property>
+
+                <property name="show_navigation" type="checkbox">
+                    <meta>
+                        <title lang="de">Navigationspfeile anzeigen</title>
+                        <title lang="en">Show navigation arrows</title>
+                    </meta>
+                    <params>
+                        <param name="type" value="toggler"/>
+                        <param name="default_value" value="true"/>
+                    </params>
+                </property>
+
+                <property name="show_pagination" type="checkbox">
+                    <meta>
+                        <title lang="de">Seitenpunkte anzeigen</title>
+                        <title lang="en">Show pagination dots</title>
+                    </meta>
+                    <params>
+                        <param name="type" value="toggler"/>
+                        <param name="default_value" value="true"/>
+                    </params>
+                </property>
+
+            </properties>
+        </section>
+
+        <section name="config">
+            <meta>
+                <title lang="de">Einstellungen</title>
+                <title lang="en">Config</title>
+            </meta>
+            <properties>
+                <xi:include href="../_fragments/attr_class.xml" xpointer="xmlns(sulu=http://schemas.sulu.io/template/template)
+                      xpointer(/sulu:properties/*)"/>
+                <xi:include href="../_fragments/attr_id.xml" xpointer="xmlns(sulu=http://schemas.sulu.io/template/template)
+                      xpointer(/sulu:properties/*)"/>
+            </properties>
+        </section>
+
+    </properties>
+</template>

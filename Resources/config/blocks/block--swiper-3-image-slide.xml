@@ -1,0 +1,47 @@
+<?xml version="1.0" ?>
+<template xmlns="http://schemas.sulu.io/template/template"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xsi:schemaLocation="http://schemas.sulu.io/template/template http://schemas.sulu.io/template/template-1.0.xsd">
+
+    <key>block--swiper-3-image-slide</key>
+
+    <meta>
+        <title lang="de">Swiper 3 Image Slide</title>
+        <title lang="en">Swiper 3 Image Slide</title>
+    </meta>
+
+    <tag name="sulu.block_preview" priority="512"/>
+
+    <properties>
+
+        <property name="image" type="single_media_selection" mandatory="true">
+            <meta>
+                <title lang="de">Bild</title>
+                <title lang="en">Image</title>
+            </meta>
+            <params>
+                <param name="types" value="image"/>
+                <param name="min" value="1"/>
+                <param name="max" value="1"/>
+            </params>
+            <tag name="sulu.block_preview" priority="512"/>
+        </property>
+
+        <block name="content" default-type="block--content-text" minOccurs="0">
+
+            <params>
+                <param name="block_id_generator" value="true"/>
+            </params>
+
+            <types>
+                <type ref="block--content-headline"/>
+                <type ref="block--content-title"/>
+                <type ref="block--content-html"/>
+                <type ref="block--content-text"/>
+            </types>
+
+        </block>
+
+    </properties>
+</template>

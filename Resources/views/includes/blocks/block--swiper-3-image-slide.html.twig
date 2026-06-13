@@ -1,0 +1,32 @@
+{% block swiper_3_image_slide %}
+    {% set image = sulu_resolve_media(content.image, app.request.locale) %}
+    {% set block_id = content._id|default %}
+
+    <div class="block--swiper-3-image__slide swiper-slide"
+         data-cms-block-id="{{ block_id }}"
+        {{ sulu_block_preview(content) }}>
+
+        {% if image|default %}
+            <picture>
+                <source media="(min-width: 768px)" srcset="{{ image.thumbnails['card-lg'] }}">
+                <source media="(min-width: 576px)" srcset="{{ image.thumbnails['card-md'] }}">
+                <img src="{{ image.thumbnails['card-xs'] }}" class="img-fluid mb-2"
+                     alt="{{ image.title|default('') }}"
+                     title="{{ image.description|default(image.title|default('')) }}"
+                     width="{{ image.properties.width }}" height="{{ image.properties.height }}">
+            </picture>
+        {% endif %}
+
+        {% if content.content|default([]) %}
+            <div class="block--swiper-3-image__caption">
+                {% for block in content.content %}
+                    {{ include('includes/blocks/' ~ block.type ~ '.html.twig', {
+                        content: block,
+                        view: view.content[loop.index0]
+                    }) }}
+                {% endfor %}
+            </div>
+        {% endif %}
+
+    </div>
+{% endblock %}

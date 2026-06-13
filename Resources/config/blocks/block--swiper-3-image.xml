@@ -1,0 +1,72 @@
+<?xml version="1.0" ?>
+<template xmlns="http://schemas.sulu.io/template/template"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://schemas.sulu.io/template/template http://schemas.sulu.io/template/template-1.0.xsd">
+    <key>block--swiper-3-image</key>
+    <meta>
+        <title lang="en">Swiper mit 3 Bildern</title>
+        <title lang="de">Swiper mit 3 Bildern</title>
+
+    </meta>
+    <properties>
+        <block name="slides" default-type="block--swiper-3-image-slide" minOccurs="3">
+
+            <params>
+                <param name="block_id_generator" value="true"/>
+            </params>
+
+            <types>
+                <type ref="block--swiper-3-image-slide"/>
+            </types>
+
+        </block>
+
+        <property name="loop" type="checkbox">
+            <meta>
+                <title lang="en">Loop</title>
+                <title lang="de">Loop</title>
+            </meta>
+        </property>
+        <property name="speed" type="text_line">
+            <meta>
+                <title lang="en">Speed (ms)</title>
+                <title lang="de">Geschwindigkeit (ms)</title>
+            </meta>
+            <params>
+                <param name="placeholder" value="600"/>
+            </params>
+        </property>
+
+        <property name="show_navigation" type="checkbox">
+            <meta>
+                <title lang="en">Show navigation</title>
+                <title lang="de">Navigation anzeigen</title>
+            </meta>
+        </property>
+
+        <property name="show_pagination" type="checkbox">
+            <meta>
+                <title lang="en">Show pagination</title>
+                <title lang="de">Paginierung anzeigen</title>
+            </meta>
+        </property>
+
+        <property name="slides_per_view" type="text_line">
+            <meta>
+                <title lang="en">Slides per view</title>
+                <title lang="de">Slides pro Ansicht</title>
+            </meta>
+            <params>
+                <param name="placeholder" value="3"/>
+            </params>
+        </property>
+
+        <property name="centered" type="checkbox">
+            <meta>
+                <title lang="en">Centered slides</title>
+                <title lang="de">Slides zentriert</title>
+            </meta>
+        </property>
+
+    </properties>
+</template>

@@ -1,0 +1,45 @@
+{% block swiper_hero %}
+    {% set block_id = content._id|default %}
+    {% set effect = content.effect|default('fade') %}
+    {% set loop = content.loop ?? true %}
+    {% set autoplay = content.autoplay ?? true %}
+    {% set autoplay_delay = content.autoplay_delay|default(5000) %}
+    {% set speed = content.speed|default(600) %}
+
+    {% do asset_collector.addAsset('/website/styles/swiper-lib.css', {'media': 'screen'}, true) %}
+    {% do asset_collector.addAsset('/website/styles/block--swiper-hero.css', {'media': 'screen'}, true) %}
+    {% do asset_collector.addAsset('/website/js/swiper-lib.js', {defer: true}, true) %}
+    {% do asset_collector.addAsset('/website/js/block--swiper-hero.js', {defer: true}, true) %}
+
+    <div class="block--swiper-hero swiper {{ content.attr_class|default('') }}"
+         data-effect="{{ effect }}"
+         data-loop="{{ loop ? 'true' : 'false' }}"
+         data-autoplay="{{ autoplay ? 'true' : 'false' }}"
+         data-autoplay-delay="{{ autoplay_delay }}"
+         data-speed="{{ speed }}"
+         data-show-navigation="{{ content.show_navigation ? 'true' : 'false' }}"
+         data-show-pagination="{{ content.show_pagination ? 'true' : 'false' }}"
+         data-cms-block-id="{{ block_id }}"
+         {{ sulu_block_preview(content) }}>
+
+        <div class="swiper-wrapper">
+            {% for slide in content.slides|default([]) %}
+                <div class="swiper-slide">
+                    {{ include('includes/blocks/' ~ slide.type ~ '.html.twig', { content: slide, view: view.slides[loop.index0] }) }}
+                </div>
+            {% endfor %}
+        </div>
+
+        <button class="swiper-button-next" type="button" aria-label="Next slide"></button>
+        <button class="swiper-button-prev" type="button" aria-label="Previous slide"></button>
+
+        <button class="block--swiper-hero__autoplay-toggle"
+                type="button"
+                aria-pressed="{{ autoplay ? 'true' : 'false' }}"
+                aria-label="{{ autoplay ? ('website.swiper.autoplay.pause'|trans) : ('website.swiper.autoplay.play'|trans) }}"
+                data-label-play="{{ 'website.swiper.autoplay.play'|trans }}"
+                data-label-pause="{{ 'website.swiper.autoplay.pause'|trans }}"></button>
+
+        <div class="swiper-pagination"></div>
+    </div>
+{% endblock %}

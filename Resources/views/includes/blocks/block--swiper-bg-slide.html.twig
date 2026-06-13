@@ -1,0 +1,27 @@
+{% block swiper_bg_slide %}
+    {% set image = sulu_resolve_media(content.image, app.request.locale) %}
+    {% set block_id = content._id|default %}
+    {% set alt = '' %}
+
+    {% if image|default %}
+        <div class="block--swiper-bg__slide swiper-slide"
+             data-cms-block-id="{{ block_id }}"
+            {{ sulu_block_preview(content) }}>
+            <picture>
+                <source media="(min-width: 1400px)"
+                        srcset="{{ image.thumbnails['1920x'] }}">
+                <source media="(min-width: 1200px)"
+                        srcset="{{ image.thumbnails['1400x'] }}">
+                <source media="(min-width: 992px)"
+                        srcset="{{ image.thumbnails['1200x'] }}">
+                <source media="(min-width: 576px)"
+                        srcset="{{ image.thumbnails['992x'] }}">
+                <img src="{{ image.thumbnails['767x'] }}"
+                     alt="{{ alt }}"
+                     loading="{{ is_first|default(false) ? 'eager' : 'lazy' }}" width="{{ image.properties.width }}"
+                     height="{{ image.properties.height }}"
+                     class="block--swiper-bg__img">
+            </picture>
+        </div>
+    {% endif %}
+{% endblock %}

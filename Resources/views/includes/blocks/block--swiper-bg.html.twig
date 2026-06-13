@@ -1,0 +1,66 @@
+{% block swiper_bg %}
+    {% set block_id = content._id|default %}
+    {% set effect = content.effect|default('fade') %}
+    {% set loop = content.loop ?? true %}
+    {% set autoplay = content.autoplay ?? true %}
+    {% set autoplay_delay = content.autoplay_delay|default(5000) %}
+    {% set speed = content.speed|default(600) %}
+    {% set show_navigation = content.show_navigation ?? true %}
+    {% set show_pagination = content.show_pagination ?? true %}
+    {% do asset_collector.addAsset('/website/styles/swiper-lib.css', {media: 'screen'}, true) %}
+    {% do asset_collector.addAsset('/website/styles/block--swiper-bg.css', {media: 'screen'}, true) %}
+    {% do asset_collector.addAsset('/website/js/swiper-lib.js', {defer: true}, true) %}
+    {% do asset_collector.addAsset('/website/js/block--swiper-bg.js', {defer: true}, true) %}
+    <div class="block--swiper-bg swiper {{ content.attr_class|default('') }}"
+         data-effect="{{ effect }}"
+         data-loop="{{ loop ? 'true' : 'false' }}"
+         data-autoplay="{{ autoplay ? 'true' : 'false' }}"
+         data-autoplay-delay="{{ autoplay_delay }}"
+         data-speed="{{ speed }}"
+         data-show-navigation="{{ show_navigation ? 'true' : 'false' }}"
+         data-show-pagination="{{ show_pagination ? 'true' : 'false' }}"
+         data-cms-block-id="{{ block_id }}"
+         {{ sulu_block_preview(content) }}>
+
+        <div class="swiper-wrapper" aria-hidden="true">
+            {% for slide in content.slides|default([]) %}
+                {{ include('includes/blocks/' ~ slide.type ~ '.html.twig', {
+                    content: slide,
+                    view: view.slides[loop.index0],
+                    is_first: loop.first,
+                }) }}
+            {% endfor %}
+        </div>
+
+        {% if content.content|default([]) %}
+            <div class="block--swiper-bg__text">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-md-7 col-lg-6 col-xl-5">
+                            {% for block in content.content %}
+                                {{ include('includes/blocks/' ~ block.type ~ '.html.twig', {
+                                    content: block,
+                                    view: view.content[loop.index0],
+                                }) }}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
+        <button type="button" class="swiper-button-prev" aria-hidden="true" tabindex="-1"></button>
+        <button type="button" class="swiper-button-next" aria-hidden="true" tabindex="-1"></button>
+        <div class="swiper-pagination" aria-hidden="true"></div>
+
+        {% if autoplay %}
+            <button type="button"
+                    class="block--swiper-bg__autoplay-toggle"
+                    aria-pressed="true"
+                    aria-label="{{ 'website.page.swiper.autoplay.pause'|trans }}"
+                    data-label-pause="{{ 'website.page.swiper.autoplay.pause'|trans }}"
+                    data-label-play="{{ 'website.page.swiper.autoplay.play'|trans }}"></button>
+        {% endif %}
+
+    </div>
+{% endblock %}

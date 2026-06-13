@@ -1,0 +1,54 @@
+<?xml version="1.0" ?>
+<template xmlns="http://schemas.sulu.io/template/template"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xsi:schemaLocation="http://schemas.sulu.io/template/template http://schemas.sulu.io/template/template-1.0.xsd">
+    <key>block--swiper-slide</key>
+    <meta>
+        <title lang="en">Swiper Slide</title>
+        <title lang="de">Swiper Slide</title>
+    </meta>
+    <properties>
+        <block name="blocks" default-type="block--swiper-slide-facts" minOccurs="0">
+
+            <params>
+                <param name="block_id_generator" value="true"/>
+            </params>
+            <types>
+                <type ref="block--swiper-slide-facts"/>
+            </types>
+        </block>
+        <property name="text" type="text_line">
+            <!-- @see https://docs.sulu.io/en/2.2/book/extend-admin.html#selection-field-type -->
+            <meta>
+                <title lang="en">Text</title>
+                <title lang="de">Text</title>
+            </meta>
+        </property>
+        <property name="link" type="link">
+            <meta>
+                <title lang="en">Link</title>
+                <title lang="de">Link</title>
+            </meta>
+            <params>
+                <param name="enable_anchor" value="true"/>
+                <param name="enable_attributes" value="true"/>
+                <param name="types" type="collection">
+                    <param name="page"/>
+                    <param name="external"/>
+                    <param name="media"/>
+                </param>
+            </params>
+        </property>
+        <section name="config">
+            <meta>
+                <title lang="en">Config</title>
+                <title lang="de">Einstellungen</title>
+            </meta>
+            <properties>
+                <xi:include href="../_fragments/attr_class.xml" xpointer="xmlns(sulu=http://schemas.sulu.io/template/template)
+                      xpointer(/sulu:properties/*)"/>
+            </properties>
+        </section>
+    </properties>
+</template>

@@ -1,0 +1,21 @@
+{% block swiper %}
+    {% set block_id = content._id|default %}
+    {% do asset_collector.addAsset('/website/styles/block--swiper.css', {'media': 'screen'}, true) %}
+    {% do asset_collector.addAsset('/website/js/swiper-lib.js', {}, true) %}
+    {% do asset_collector.addAsset('/website/js/block--swiper.js', {}, true) %}
+    <div class="block--swiper swiper {{ content.attr_class|default('') }}" data-cms-block-id="{{ block_id }}"  {{ sulu_block_preview(content) }}>
+        <div class="swiper-wrapper">
+            {% for block in content.blocks|default([]) %}
+                {% include 'includes/blocks/' ~ block.type ~ '.html.twig' with {
+                    content: block,
+                    view: view.blocks[loop.index0],
+                } %}
+            {% endfor %}
+        </div>
+
+        <button type="button" class="swiper-button-next" aria-label="Next slide"></button>
+        <button type="button" class="swiper-button-prev" aria-label="Previous slide"></button>
+
+        <div class="swiper-pagination"></div>
+    </div>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% block swiper_3_image %}
+    {% set block_id = content._id|default %}
+    {% set loop = content.loop ?? true %}
+    {% set speed = content.speed|default(600) %}
+
+    {% do asset_collector.addAsset('/website/styles/swiper-lib.css', {'media': 'screen'}, true) %}
+    {% do asset_collector.addAsset('/website/styles/block--swiper-3-image.css', {'media': 'screen'}, true) %}
+    {% do asset_collector.addAsset('/website/js/swiper-lib.js', {defer: true}, true) %}
+    {% do asset_collector.addAsset('/website/js/block--swiper-3-image.js', {defer: true}, true) %}
+
+    <div class="block--swiper-3-image swiper {{ content.attr_class|default('') }}"
+         data-loop="{{ loop ? 'true' : 'false' }}"
+         data-speed="{{ speed }}"
+         data-cms-block-id="{{ block_id }}"
+         {{ sulu_block_preview(content) }}>
+
+        <div class="swiper-wrapper" >
+            {% for slide in content.slides|default([]) %}
+                {{ include('includes/blocks/' ~ slide.type ~ '.html.twig', {
+                    content: slide,
+                    view: view.slides[loop.index0],
+                    is_first: loop.first,
+                }) }}
+            {% endfor %}
+        </div>
+
+
+    </div>
+{% endblock %}

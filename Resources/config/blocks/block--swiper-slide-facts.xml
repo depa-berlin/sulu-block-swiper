@@ -1,0 +1,96 @@
+<?xml version="1.0" ?>
+<template xmlns="http://schemas.sulu.io/template/template"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xsi:schemaLocation="http://schemas.sulu.io/template/template http://schemas.sulu.io/template/template-1.0.xsd">
+    <key>block--swiper-slide-facts</key>
+    <meta>
+        <title lang="en">Slide with facts</title>
+        <title lang="de">Slide mit Fakten</title>
+    </meta>
+    <properties>
+        <section name="content">
+            <meta>
+                <title lang="en">Content</title>
+                <title lang="de">Inhalte</title>
+            </meta>
+            <properties>
+                <property name="image" type="single_media_selection">
+                    <params>
+                        <param name="types" value="image,video"/>
+                        <param name="displayOptions" type="collection">
+                            <param name="leftTop" value="true"/>
+                            <param name="top" value="true"/>
+                            <param name="rightTop" value="true"/>
+                            <param name="left" value="true"/>
+                            <param name="middle" value="false"/>
+                            <param name="right" value="true"/>
+                            <param name="leftBottom" value="true"/>
+                            <param name="bottom" value="true"/>
+                            <param name="rightBottom" value="true"/>
+                        </param>
+
+                        <param name="defaultDisplayOption" value="left"/>
+                    </params>
+                </property>
+                <property name="title" type="text_area">
+                    <!-- @see https://docs.sulu.io/en/2.2/book/extend-admin.html#selection-field-type -->
+                    <meta>
+                        <title lang="en">Title</title>
+                        <title lang="de">Überschrift</title>
+                    </meta>
+                </property>
+
+                <property name="text" type="text_area">
+                    <meta>
+                        <title lang="en">Text</title>
+                        <title lang="de">Text</title>
+                    </meta>
+                </property>
+            </properties>
+        </section>
+        <section name="config">
+            <meta>
+                <title lang="en">Config</title>
+                <title lang="de">Einstellungen</title>
+            </meta>
+
+            <properties>
+                <property name="loading" type="single_select">
+                    <meta>
+                        <title lang="en">Loading images</title>
+                        <title lang="de">Laden von Bildern</title>
+                    </meta>
+
+                    <params>
+                        <param name="default_value" value="lazy"/>
+
+                        <param name="values" type="collection">
+                            <param name="lazy">
+                                <meta>
+                                    <title lang="en">lazy</title>
+                                    <title lang="de">auf dem letzten Drücker</title>
+                                </meta>
+                            </param>
+
+                            <param name="eager">
+                                <meta>
+                                    <title lang="en">eager</title>
+                                    <title lang="de">bevorzugt</title>
+                                </meta>
+                            </param>
+                            <param name="auto">
+                                <meta>
+                                    <title lang="en">automatically</title>
+                                    <title lang="de">automatisch</title>
+                                </meta>
+                            </param>
+                        </param>
+                    </params>
+                </property>
+                <xi:include href="../_fragments/attr_class.xml" xpointer="xmlns(sulu=http://schemas.sulu.io/template/template)
+                      xpointer(/sulu:properties/*)"/>
+            </properties>
+        </section>
+    </properties>
+</template>
