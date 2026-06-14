@@ -4,46 +4,27 @@ declare(strict_types=1);
 
 namespace Depa\SuluBlockSwiperBundle\DependencyInjection;
 
-use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\Extension\Extension;
-use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
+use Depa\SuluBlockHelperBundle\DependencyInjection\AbstractBlockExtension;
 
-class SuluBlockSwiperExtension extends Extension implements PrependExtensionInterface
+class SuluBlockSwiperExtension extends AbstractBlockExtension
 {
-    use BlockMetadataLoaderTrait;
-
-    public function load(array $configs, ContainerBuilder $container): void
+    protected function getBundleName(): string
     {
-        $metadata = $this->loadMetadataFromXml(__DIR__ . '/../../Resources/config/blocks');
-
-        $container->setParameter('sulu_block_swiper.bundle_metadata', [
-            'bundle'   => 'SuluBlockSwiperBundle',
-            'package'  => 'depa-berlin/sulu-block-swiper',
-            'blocks'   => $metadata['blocks'],
-            'children' => $metadata['children'],
-        ]);
+        return 'SuluBlockSwiperBundle';
     }
 
-    public function prepend(ContainerBuilder $container): void
+    protected function getPackageName(): string
     {
-        if ($container->hasExtension('twig')) {
-            $container->prependExtensionConfig('twig', [
-                'paths' => [
-                    __DIR__ . '/../../Resources/views' => null,
-                ],
-            ]);
-        }
+        return 'depa-berlin/sulu-block-swiper';
+    }
 
-        if ($container->hasExtension('sulu_admin')) {
-            $container->prependExtensionConfig('sulu_admin', [
-                'templates' => [
-                    'block' => [
-                        'directories' => [
-                            'sulu_block_swiper' => __DIR__ . '/../../Resources/config/blocks',
-                        ],
-                    ],
-                ],
-            ]);
-        }
+    protected function getMetadataParameterName(): string
+    {
+        return 'sulu_block_swiper.bundle_metadata';
+    }
+
+    protected function getSuluAdminTemplateKey(): string
+    {
+        return 'sulu_block_swiper';
     }
 }
