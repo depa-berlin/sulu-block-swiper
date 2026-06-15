@@ -1,0 +1,9 @@
+section:
+    - block--swiper
+    - block--swiper-3-image
+    - block--swiper-hero
+    - block--swiper-bg
+
+container:
+    - block--swiper
+    - block--swiper-3-image
