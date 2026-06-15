@@ -15,7 +15,7 @@ class SuluBlockSwiperExtension extends AbstractBlockExtension
 
     protected function getPackageName(): string
     {
-        return 'depa-berlin/sulu-block-swiper';
+        return 'depa/sulu-block-swiper';
     }
 
     protected function getMetadataParameterName(): string
