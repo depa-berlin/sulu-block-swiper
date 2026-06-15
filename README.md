@@ -36,13 +36,13 @@ block--swiper-bg
 - PHP 8.2+
 - Symfony 7.0+
 - Sulu CMS 3.0+
-- `depa-berlin/sulu-block-helper`
+- `depa/sulu-block-helper`
 - Swiper.js (loaded via `asset_collector` in templates)
 
 ## Installation
 
 ```bash
-composer require depa-berlin/sulu-block-swiper
+composer require depa/sulu-block-swiper
 ```
 
 Register in `config/bundles.php`:
