@@ -67,10 +67,16 @@ Stand: Branch `main` (eb845ae).
 
 ## 2. Inkonsistenzen zwischen den Blöcken (mittlere Priorität)
 
-- [ ] **2.1 — Übersetzungsschlüssel vereinheitlichen**
+- [ ] **2.1 — Übersetzungsschlüssel vereinheitlichen** *(wartet auf Projekt-Abgleich)*
   `block--swiper-bg.html.twig:60-62` nutzt `website.page.swiper.autoplay.*`,
   `block--swiper-hero.html.twig:39-41` nutzt `website.swiper.autoplay.*`.
   → Auf einen Namespace einigen; erwägen, Translations im Bundle mitzuliefern.
+  **Todo:** Vor der Umsetzung in den Projekten prüfen, welcher Namespace dort
+  bereits übersetzt ist (`website.swiper.*` oder `website.page.swiper.*`).
+  Geplante Umsetzung danach: (1) betroffenes Template auf den gemeinsamen
+  Namespace umstellen, (2) `Resources/translations/messages.{de,en}.yaml`
+  im Bundle mitliefern (App-Übersetzungen überschreiben Bundle-Defaults),
+  (3) verwaiste Alt-Schlüssel in den Projekten aufräumen.
 
 - [ ] **2.2 — Asset-Loading in `block--swiper.html.twig` angleichen**
   Lädt als einziges Template `swiper-lib.js` ohne `defer: true` und kein
