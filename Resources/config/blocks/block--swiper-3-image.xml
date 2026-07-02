@@ -27,13 +27,14 @@
                 <title lang="de">Loop</title>
             </meta>
         </property>
-        <property name="speed" type="text_line">
+        <property name="speed" type="number">
             <meta>
                 <title lang="en">Speed (ms)</title>
                 <title lang="de">Geschwindigkeit (ms)</title>
             </meta>
             <params>
-                <param name="placeholder" value="600"/>
+                <param name="min" value="100"/>
+                <param name="max" value="3000"/>
             </params>
         </property>
 

@@ -1,7 +1,11 @@
 {% block swiper_3_image %}
     {% set block_id = content._id|default %}
-    {% set loop = content.loop ?? true %}
+    {% set loop_enabled = content.loop ?? true %}
     {% set speed = content.speed|default(600) %}
+    {% set show_navigation = content.show_navigation|default(false) %}
+    {% set show_pagination = content.show_pagination|default(false) %}
+    {% set slides_per_view = content.slides_per_view|default(3) %}
+    {% set centered = content.centered|default(false) %}
 
     {% do asset_collector.addAsset('/website/styles/swiper-lib.css', {'media': 'screen'}, true) %}
     {% do asset_collector.addAsset('/website/styles/block--swiper-3-image.css', {'media': 'screen'}, true) %}
@@ -9,8 +13,12 @@
     {% do asset_collector.addAsset('/website/js/block--swiper-3-image.js', {defer: true}, true) %}
 
     <div class="block--swiper-3-image swiper {{ content.attr_class|default('') }}"
-         data-loop="{{ loop ? 'true' : 'false' }}"
+         data-loop="{{ loop_enabled ? 'true' : 'false' }}"
          data-speed="{{ speed }}"
+         data-show-navigation="{{ show_navigation ? 'true' : 'false' }}"
+         data-show-pagination="{{ show_pagination ? 'true' : 'false' }}"
+         data-slides-per-view="{{ slides_per_view }}"
+         data-centered="{{ centered ? 'true' : 'false' }}"
          data-cms-block-id="{{ block_id }}"
          {{ sulu_block_preview(content) }}>
 
@@ -24,6 +32,14 @@
             {% endfor %}
         </div>
 
+        {% if show_navigation %}
+            <button type="button" class="swiper-button-next" aria-label="Next slide"></button>
+            <button type="button" class="swiper-button-prev" aria-label="Previous slide"></button>
+        {% endif %}
+
+        {% if show_pagination %}
+            <div class="swiper-pagination"></div>
+        {% endif %}
 
     </div>
 {% endblock %}
