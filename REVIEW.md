@@ -51,11 +51,13 @@ Stand: Branch `main` (eb845ae).
   → Option entfernt (`config_image.xml`-Fragment war nicht betroffen). Template
   normalisiert gespeicherte Altwerte auf `lazy`.
 
-- [ ] **1.8 — Robustheit in `block--swiper-slide.html.twig`**
+- [x] **1.8 — Robustheit in `block--swiper-slide.html.twig`**
   - Zeile 3: `content.attr_class` ohne `|default('')` (einziges Template ohne Guard).
+    → mit 1.5 erledigt.
   - Zeile 4: `view.link.target` ohne Default — leeres `target=""` bzw. Fehler bei
-    `strict_variables`.
-  - Bei `target="_blank"` fehlt `rel="noopener"`.
+    `strict_variables`. → `target` wird nur noch gerendert, wenn gesetzt.
+  - Bei `target="_blank"` fehlt `rel="noopener"`. → `rel="noopener noreferrer"`
+    wird bei `_blank` automatisch gesetzt.
 
 - [ ] **1.9 — Externe Abhängigkeit `block--hero-content` unklar**
   `block--swiper-hero.xml:20` referenziert `block--hero-content` — folgt nicht dem

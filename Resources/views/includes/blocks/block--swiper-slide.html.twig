@@ -1,7 +1,8 @@
 {% block swiper_slide %}
     {% set block_id = content._id|default %}
     <div class="block--swiper-slide swiper-slide {{ content.attr_class|default('') }}" data-cms-block-id="{{ block_id }}" {{ sulu_block_preview(content) }}>
-        {% if content.link|default %}<a href="{{ content.link }}" target="{{ view.link.target }}">{% endif %}
+        {% set link_target = view.link.target|default(null) %}
+        {% if content.link|default %}<a href="{{ content.link }}"{% if link_target %} target="{{ link_target }}"{% endif %}{% if link_target == '_blank' %} rel="noopener noreferrer"{% endif %}>{% endif %}
 
             {% if content.blocks|default([]) %}
                 {% for block in content.blocks %}
