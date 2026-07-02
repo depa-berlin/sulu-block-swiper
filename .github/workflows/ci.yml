@@ -29,6 +29,30 @@ jobs:
       - name: Run PHPUnit
         run: vendor/bin/phpunit
 
+  lint-xml:
+    name: Lint XML
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install xmllint
+        run: sudo apt-get update && sudo apt-get install -y libxml2-utils
+
+      - name: Lint block configs (incl. XInclude resolution)
+        run: |
+          set -e
+          for f in Resources/config/blocks/*.xml; do
+            xmllint --noout --xinclude "$f"
+          done
+
+      - name: Lint fragments
+        run: |
+          set -e
+          for f in Resources/config/_fragments/*.xml; do
+            xmllint --noout "$f"
+          done
+
   phpstan:
     name: PHPStan
     runs-on: ubuntu-latest

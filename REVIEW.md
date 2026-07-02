@@ -158,8 +158,12 @@ Stand: Branch `main` (eb845ae).
   - jede referenzierte Kind-Block-Type ist auflösbar (paketintern oder deklarierte
     Abhängigkeit)
 
-- [ ] **4.4 — CI: Lint-Steps ergänzen**
+- [x] **4.4 — CI: Lint-Steps ergänzen**
   `xmllint` (inkl. `--xinclude`) und `twig lint` als eigener Job/Step.
+  → XML-Lint als eigener CI-Job `lint-xml`. Twig-Lint als PHPUnit-Test
+  (`tests/Unit/Templates/TwigTemplateLintTest.php`, `twig/twig` in require-dev),
+  läuft damit in der bestehenden Matrix — `bin/console lint:twig` bräuchte
+  eine Symfony-App, die das Bundle nicht hat.
 
 - [x] **4.5 — CI: PHP 8.4 in die Matrix aufnehmen**
   `composer.json` erlaubt `^8.2`, Matrix endet bei 8.3.
