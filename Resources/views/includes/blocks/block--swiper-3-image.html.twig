@@ -7,9 +7,9 @@
     {% set slides_per_view = content.slides_per_view|default(3) %}
     {% set centered = content.centered|default(false) %}
 
-    {% do asset_collector.addAsset('/website/styles/swiper-lib.css', {'media': 'screen'}, true) %}
+    {% do asset_collector.addAsset('/bundles/sulublockswiper/vendor/swiper/swiper-bundle.min.css', {'media': 'screen'}, true) %}
     {% do asset_collector.addAsset('/website/styles/block--swiper-3-image.css', {'media': 'screen'}, true) %}
-    {% do asset_collector.addAsset('/website/js/swiper-lib.js', {defer: true}, true) %}
+    {% do asset_collector.addAsset('/bundles/sulublockswiper/vendor/swiper/swiper-bundle.min.js', {defer: true}, true) %}
     {% do asset_collector.addAsset('/website/js/block--swiper-3-image.js', {defer: true}, true) %}
 
     <div class="block--swiper-3-image swiper {{ content.attr_class|default('') }}"

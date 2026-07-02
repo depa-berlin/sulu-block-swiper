@@ -8,9 +8,9 @@
     {% set show_navigation = content.show_navigation ?? true %}
     {% set show_pagination = content.show_pagination ?? true %}
 
-    {% do asset_collector.addAsset('/website/styles/swiper-lib.css', {'media': 'screen'}, true) %}
+    {% do asset_collector.addAsset('/bundles/sulublockswiper/vendor/swiper/swiper-bundle.min.css', {'media': 'screen'}, true) %}
     {% do asset_collector.addAsset('/website/styles/block--swiper-hero.css', {'media': 'screen'}, true) %}
-    {% do asset_collector.addAsset('/website/js/swiper-lib.js', {defer: true}, true) %}
+    {% do asset_collector.addAsset('/bundles/sulublockswiper/vendor/swiper/swiper-bundle.min.js', {defer: true}, true) %}
     {% do asset_collector.addAsset('/website/js/block--swiper-hero.js', {defer: true}, true) %}
 
     <div class="block--swiper-hero swiper {{ content.attr_class|default('') }}"

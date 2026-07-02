@@ -118,8 +118,12 @@ Stand: Branch `main` (eb845ae).
   unter `/bundles/sulublockswiper/`). Die Stylesheets sowie das JS der übrigen Blöcke
   (`block--swiper-bg.js`, `block--swiper-hero.js`, `block--swiper-3-image.js`,
   `block--swiper*.css`) werden weiterhin unter `/website/…` aus der App erwartet.
-  → Aus der App ins Bundle übernehmen und Asset-Pfade in den Templates umstellen
-  (`swiper-lib.js`/`swiper-lib.css` bleiben App-Sache).
+  → Aus der App ins Bundle übernehmen und Asset-Pfade in den Templates umstellen.
+  **Teilweise erledigt:** Swiper.js 14.0.1 selbst liegt jetzt im Bundle
+  (`Resources/public/vendor/swiper/`, MIT-Lizenz beigelegt); alle vier Templates
+  laden es von dort statt `/website/…/swiper-lib.*`. Beim Rollout in den Projekten:
+  App-Kopien von `swiper-lib.*` entfernen (sonst Doppel-Laden) und die drei
+  App-Block-Scripts gegen Swiper 14 verifizieren. Offen: block-spezifisches CSS/JS.
 
 - [ ] **2.8 — Bundle-`block--swiper.js` mit dem App-Original abgleichen**
   `Resources/public/js/block--swiper.js` wurde neu geschrieben (Standard-Swiper-Init

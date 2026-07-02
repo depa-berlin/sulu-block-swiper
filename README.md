@@ -40,7 +40,7 @@ block--swiper-bg
 - `depa/sulu-block-helper`
 - `depa/sulu-block-content` (content blocks used inside slides)
 - `depa/sulu-block-hero` (provides `block--hero-content`, the slide type of `block--swiper-hero`)
-- Swiper.js (loaded via `asset_collector` in templates)
+- Swiper.js is **bundled** (see [Assets](#assets)) — the app does not need to provide it
 
 ## Installation
 
@@ -65,9 +65,18 @@ bin/console assets:install
 
 ## Assets
 
+- `Resources/public/vendor/swiper/` — **Swiper.js 14.0.1** (`swiper-bundle.min.js/css`,
+  MIT license, see the bundled `LICENSE`/`VERSION` files). Loaded by all four slider
+  templates from `/bundles/sulublockswiper/vendor/swiper/`. To upgrade, replace the
+  dist files from the `swiper` npm package and update `VERSION`.
+  **Migration note:** remove any app-provided copy (`/website/js/swiper-lib.js`,
+  `/website/styles/swiper-lib.css`) and references to it — the asset collector
+  deduplicates by path, so a second copy under a different path would load Swiper
+  twice. Verify the app-side block scripts (`block--swiper-bg.js`, `block--swiper-hero.js`,
+  `block--swiper-3-image.js`) against Swiper 14.
 - `Resources/public/js/block--swiper.js` — Swiper initialization for `block--swiper`;
-  reads the block settings from the `data-*` attributes rendered by the template.
-  Requires Swiper.js (`swiper-lib.js`) to be provided by the app.
+  reads the block settings from the `data-*` attributes rendered by the template
+  (tested against the bundled Swiper 14).
 - The stylesheets and the JS for the other blocks (`block--swiper-bg`, `block--swiper-hero`,
   `block--swiper-3-image`) are currently still expected under `/website/…` in the app.
 
