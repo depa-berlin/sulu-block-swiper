@@ -21,6 +21,7 @@
                         <param name="block_id_generator" value="true"/>
                     </params>
                     <types>
+                        <type ref="block--swiper-slide"/>
                         <type ref="block--swiper-slide-facts"/>
                     </types>
                 </block>

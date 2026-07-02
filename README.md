@@ -19,6 +19,7 @@ Swiper/Carousel block collection for Sulu CMS — 8 configurable slider and caro
 
 ```
 block--swiper
+  ├── block--swiper-slide
   └── block--swiper-slide-facts
 
 block--swiper-slide

@@ -1,6 +1,6 @@
 {% block swiper_slide %}
     {% set block_id = content._id|default %}
-    <div class="block--swiper-slide {{ content.attr_class }}" data-cms-block-id="{{ block_id }}" {{ sulu_block_preview(content) }}>
+    <div class="block--swiper-slide swiper-slide {{ content.attr_class|default('') }}" data-cms-block-id="{{ block_id }}" {{ sulu_block_preview(content) }}>
         {% if content.link|default %}<a href="{{ content.link }}" target="{{ view.link.target }}">{% endif %}
 
             {% if content.blocks|default([]) %}

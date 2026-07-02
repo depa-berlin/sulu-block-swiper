@@ -33,10 +33,11 @@ Stand: Branch `main` (eb845ae).
   `data-show-navigation="false"`, obwohl der XML-Default `true` ist.
   → `content.show_navigation ?? true` bzw. `content.show_pagination ?? true` verwenden.
 
-- [ ] **1.5 — `block--swiper-slide` ist verwaist**
+- [x] **1.5 — `block--swiper-slide` ist verwaist**
   Kein Container referenziert den Typ (`block--swiper` erlaubt nur
   `block--swiper-slide-facts`), er steht nicht in `_slots.yaml`.
-  → Entscheiden: entfernen oder als Slide-Typ in `block--swiper` registrieren.
+  → Entschieden: als Slide-Typ in `block--swiper` registriert; Root-Element des
+  Templates trägt jetzt die `swiper-slide`-Klasse.
 
 - [ ] **1.6 — Video-Medien erzeugen kaputte Ausgabe in `block--swiper-slide-facts`**
   `block--swiper-slide-facts.xml:20` erlaubt `types="image,video"`, das Template rendert
