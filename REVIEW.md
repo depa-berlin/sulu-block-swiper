@@ -161,8 +161,9 @@ Stand: Branch `main` (eb845ae).
 - [ ] **4.4 — CI: Lint-Steps ergänzen**
   `xmllint` (inkl. `--xinclude`) und `twig lint` als eigener Job/Step.
 
-- [ ] **4.5 — CI: PHP 8.4 in die Matrix aufnehmen**
+- [x] **4.5 — CI: PHP 8.4 in die Matrix aufnehmen**
   `composer.json` erlaubt `^8.2`, Matrix endet bei 8.3.
+  → 8.4 ergänzt. Ergebnis beim ersten CI-Lauf (PR/Push auf main) prüfen.
 
 - [x] **4.6 — CI: Composer-Auth für private VCS-Repos prüfen**
   Falls `sulu-block-helper`/`sulu-block-content` privat sind, braucht
