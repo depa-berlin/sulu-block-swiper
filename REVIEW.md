@@ -152,11 +152,16 @@ Stand: Branch `main` (eb845ae).
   Templates setzen `content-image`, `card-lg`/`card-md`/`card-xs` und
   `1920x`/`1400x`/`1200x`/`992x`/`767x` voraus — nirgends dokumentiert.
 
-- [ ] **4.3 — Konsistenz-Tests ergänzen**
+- [x] **4.3 — Konsistenz-Tests ergänzen**
   - XML-`<key>` == Dateiname für alle Block-XMLs
   - jeder Eintrag in `_slots.yaml` existiert als XML
   - jede referenzierte Kind-Block-Type ist auflösbar (paketintern oder deklarierte
     Abhängigkeit)
+  → Umgesetzt als `tests/Unit/Config/BlockConfigConsistencyTest.php`; zusätzlich:
+  jeder Block hat ein Twig-Template, und jeder `default-type` ist in den `<types>`
+  seines Blocks deklariert. Externe Typen sind in `EXTERNAL_TYPES` mit
+  Herkunftspaket gepflegt (`block--hero-content` dort als ungeklärt markiert,
+  vgl. 1.9). `symfony/yaml` in require-dev.
 
 - [x] **4.4 — CI: Lint-Steps ergänzen**
   `xmllint` (inkl. `--xinclude`) und `twig lint` als eigener Job/Step.
