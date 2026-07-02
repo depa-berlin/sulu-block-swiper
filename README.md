@@ -38,6 +38,8 @@ block--swiper-bg
 - Symfony 7.0+
 - Sulu CMS 3.0+
 - `depa/sulu-block-helper`
+- `depa/sulu-block-content` (content blocks used inside slides)
+- `depa/sulu-block-hero` (provides `block--hero-content`, the slide type of `block--swiper-hero`)
 - Swiper.js (loaded via `asset_collector` in templates)
 
 ## Installation
@@ -50,6 +52,8 @@ Register in `config/bundles.php`:
 
 ```php
 Depa\SuluBlockHelperBundle\SuluBlockHelperBundle::class => ['all' => true],
+Depa\SuluBlockContentBundle\SuluBlockContentBundle::class => ['all' => true],
+Depa\SuluBlockHeroBundle\SuluBlockHeroBundle::class => ['all' => true],
 Depa\SuluBlockSwiperBundle\SuluBlockSwiperBundle::class => ['all' => true],
 ```
 

@@ -59,11 +59,13 @@ Stand: Branch `main` (eb845ae).
   - Bei `target="_blank"` fehlt `rel="noopener"`. → `rel="noopener noreferrer"`
     wird bei `_blank` automatisch gesetzt.
 
-- [ ] **1.9 — Externe Abhängigkeit `block--hero-content` unklar**
+- [x] **1.9 — Externe Abhängigkeit `block--hero-content` unklar**
   `block--swiper-hero.xml:20` referenziert `block--hero-content` — folgt nicht dem
   Namensschema von `sulu-block-content` (`block--content-*`) und kommt aus keinem der
   deklarierten Composer-Pakete erkennbar.
-  → Herkunft verifizieren, Abhängigkeit in `composer.json` + README dokumentieren.
+  → Geklärt: stammt aus `depa/sulu-block-hero`. Als require + VCS-Repository in
+  composer.json aufgenommen, in EXTERNAL_TYPES des Konsistenz-Tests und im README
+  dokumentiert.
 
 ## 2. Inkonsistenzen zwischen den Blöcken (mittlere Priorität)
 
@@ -144,9 +146,11 @@ Stand: Branch `main` (eb845ae).
 
 ## 4. Doku, Tests, CI (niedrige Priorität)
 
-- [ ] **4.1 — README: `depa/sulu-block-content` als Requirement ergänzen**
+- [x] **4.1 — README: `depa/sulu-block-content` als Requirement ergänzen**
   Ist Pflichtabhängigkeit (composer.json), fehlt aber unter „Requirements“; das
   `bundles.php`-Beispiel registriert das ContentBundle ebenfalls nicht.
+  → Requirements um `sulu-block-content` und `sulu-block-hero` ergänzt,
+  `bundles.php`-Beispiel registriert jetzt alle vier Bundles.
 
 - [x] **4.2 — README: benötigte Bild-Formate dokumentieren**
   Templates setzen `content-image`, `card-lg`/`card-md`/`card-xs` und
