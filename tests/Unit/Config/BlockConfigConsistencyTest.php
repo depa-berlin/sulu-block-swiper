@@ -26,8 +26,7 @@ class BlockConfigConsistencyTest extends TestCase
         'block--content-lead' => 'depa/sulu-block-content',
         'block--content-text' => 'depa/sulu-block-content',
         'block--content-title' => 'depa/sulu-block-content',
-        // TODO: Herkunft ungeklärt — siehe REVIEW.md Punkt 1.9
-        'block--hero-content' => 'unbekannt (REVIEW.md 1.9)',
+        'block--hero-content' => 'depa/sulu-block-hero',
     ];
 
     /**
