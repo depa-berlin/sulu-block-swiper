@@ -5,6 +5,8 @@
     {% set autoplay = content.autoplay ?? true %}
     {% set autoplay_delay = content.autoplay_delay|default(5000) %}
     {% set speed = content.speed|default(600) %}
+    {% set show_navigation = content.show_navigation ?? true %}
+    {% set show_pagination = content.show_pagination ?? true %}
 
     {% do asset_collector.addAsset('/website/styles/swiper-lib.css', {'media': 'screen'}, true) %}
     {% do asset_collector.addAsset('/website/styles/block--swiper-hero.css', {'media': 'screen'}, true) %}
@@ -17,8 +19,8 @@
          data-autoplay="{{ autoplay ? 'true' : 'false' }}"
          data-autoplay-delay="{{ autoplay_delay }}"
          data-speed="{{ speed }}"
-         data-show-navigation="{{ content.show_navigation ? 'true' : 'false' }}"
-         data-show-pagination="{{ content.show_pagination ? 'true' : 'false' }}"
+         data-show-navigation="{{ show_navigation ? 'true' : 'false' }}"
+         data-show-pagination="{{ show_pagination ? 'true' : 'false' }}"
          data-cms-block-id="{{ block_id }}"
          {{ sulu_block_preview(content) }}>
 

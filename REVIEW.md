@@ -16,18 +16,18 @@ Stand: Branch `main` (eb845ae).
   Editor-Einstellungen sind auf der Website wirkungslos.
   → Template analog zu `block--swiper-bg.html.twig:14-23` verdrahten.
 
-- [ ] **1.2 — `block--swiper-3-image` ignoriert die Hälfte seiner Einstellungen**
+- [x] **1.2 — `block--swiper-3-image` ignoriert die Hälfte seiner Einstellungen**
   Das XML definiert `show_navigation`, `show_pagination`, `slides_per_view`, `centered`,
   aber `block--swiper-3-image.html.twig` gibt nur `data-loop` und `data-speed` aus und
   rendert keine `.swiper-button-*`- oder `.swiper-pagination`-Elemente.
   → Fehlende `data-*`-Attribute und Navigations-/Pagination-Markup ergänzen.
 
-- [ ] **1.3 — `speed` in `block--swiper-3-image.xml` ist `text_line` statt `number`**
+- [x] **1.3 — `speed` in `block--swiper-3-image.xml` ist `text_line` statt `number`**
   (`block--swiper-3-image.xml:30`) — Freitext landet ungeprüft in `data-speed`.
   Alle anderen Blöcke nutzen `type="number"` mit `min`/`max`.
   → Auf `number` umstellen (Achtung: Bestandsdaten prüfen).
 
-- [ ] **1.4 — Falscher Fallback bei `block--swiper-hero`**
+- [x] **1.4 — Falscher Fallback bei `block--swiper-hero`**
   `block--swiper-hero.html.twig:20-21` nutzt `content.show_navigation ? 'true' : 'false'`
   ohne `?? true`-Fallback (anders als Zeilen 4–7). Bestandsinhalte mit `null` rendern
   `data-show-navigation="false"`, obwohl der XML-Default `true` ist.
