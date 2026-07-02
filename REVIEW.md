@@ -98,6 +98,14 @@ Stand: Branch `main` (eb845ae).
   → Aus der App ins Bundle übernehmen und Asset-Pfade in den Templates umstellen
   (`swiper-lib.js`/`swiper-lib.css` bleiben App-Sache).
 
+- [ ] **2.8 — Bundle-`block--swiper.js` mit dem App-Original abgleichen**
+  `Resources/public/js/block--swiper.js` wurde neu geschrieben (Standard-Swiper-Init
+  auf Basis der `data-*`-Attribute), da das bisherige `/website/js/block--swiper.js`
+  aus der App hier nicht zugänglich war. Eventuelle Besonderheiten des Originals
+  (Breakpoints, Events, Custom-Verhalten) fehlen daher möglicherweise.
+  → Mit dem App-Original vergleichen, Abweichungen ins Bundle übernehmen und das
+  alte Script aus der App entfernen (sonst konkurrieren zwei Initialisierungen).
+
 ## 3. Barrierefreiheit (bewusst entscheiden)
 
 - [ ] **3.1 — `aria-hidden`-Strategie in `block--swiper-bg` dokumentieren oder vereinheitlichen**
