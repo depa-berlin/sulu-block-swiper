@@ -22,6 +22,11 @@
          data-cms-block-id="{{ block_id }}"
          {{ sulu_block_preview(content) }}>
 
+        {# Die Slides sind rein dekorative Hintergrundbilder (alt="" im Slide-Template).
+           Wrapper, Navigation und Pagination sind deshalb bewusst per aria-hidden /
+           tabindex="-1" aus Screenreader- und Tastaturbedienung genommen; der inhaltliche
+           Text liegt zugänglich außerhalb des Wrappers in .block--swiper-bg__text.
+           Diesen Block NICHT für inhaltstragende Bilder verwenden — siehe README. #}
         <div class="swiper-wrapper" aria-hidden="true">
             {% for slide in content.slides|default([]) %}
                 {{ include('includes/blocks/' ~ slide.type ~ '.html.twig', {

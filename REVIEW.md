@@ -76,7 +76,10 @@ Stand: Branch `main` (eb845ae).
   Geplante Umsetzung danach: (1) betroffenes Template auf den gemeinsamen
   Namespace umstellen, (2) `Resources/translations/messages.{de,en}.yaml`
   im Bundle mitliefern (App-Übersetzungen überschreiben Bundle-Defaults),
-  (3) verwaiste Alt-Schlüssel in den Projekten aufräumen.
+  (3) verwaiste Alt-Schlüssel in den Projekten aufräumen, (4) dabei auch die
+  hartkodiert englischen `aria-label="Next slide"/"Previous slide"` in
+  `block--swiper` und `block--swiper-hero` auf `|trans`-Schlüssel umstellen
+  (aus Review 3.1, Variante 2).
 
 - [ ] **2.2 — Asset-Loading in `block--swiper.html.twig` angleichen**
   Lädt als einziges Template `swiper-lib.js` ohne `defer: true` und kein
@@ -121,12 +124,23 @@ Stand: Branch `main` (eb845ae).
 
 ## 3. Barrierefreiheit (bewusst entscheiden)
 
-- [ ] **3.1 — `aria-hidden`-Strategie in `block--swiper-bg` dokumentieren oder vereinheitlichen**
+- [x] **3.1 — `aria-hidden`-Strategie in `block--swiper-bg` dokumentieren oder vereinheitlichen**
   `block--swiper-bg.html.twig` setzt `aria-hidden="true"` auf den gesamten
   `swiper-wrapper` sowie Navigation/Pagination (`tabindex="-1"`) — Slider ist für
   Screenreader/Tastatur unsichtbar. Vertretbar bei rein dekorativen Hintergründen
   (Text liegt außerhalb des Wrappers), aber: dokumentieren, und die Linie ist
   uneinheitlich — die anderen Slider haben diese Attribute nicht.
+  → Entschieden: Verhalten ist Absicht (dekorative Hintergründe). Als Kommentar im
+  Template und README-Abschnitt „Accessibility“ dokumentiert. Übersetzbare
+  aria-labels in 2.1 (4) aufgenommen; vollständiges Karussell-Muster als 3.2.
+
+- [ ] **3.2 — Einheitliches Karussell-A11y-Muster für die inhaltstragenden Slider**
+  `block--swiper`, `block--swiper-hero` und `block--swiper-3-image` folgen nicht dem
+  W3C-ARIA-Karussell-Muster (`aria-roledescription="carousel"`, Slides mit
+  `role="group"` und „Slide x von y“-Beschriftung, `aria-live` beim manuellen
+  Blättern). Vieles davon kann Swiper.js über sein `a11y`-Modul erzeugen.
+  → Zusammen mit der Verlagerung der Block-JS ins Bundle (2.7/2.8) umsetzen,
+  da es primär Swiper-Konfiguration betrifft.
 
 ## 4. Doku, Tests, CI (niedrige Priorität)
 

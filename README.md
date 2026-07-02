@@ -67,6 +67,21 @@ bin/console assets:install
 - The stylesheets and the JS for the other blocks (`block--swiper-bg`, `block--swiper-hero`,
   `block--swiper-3-image`) are currently still expected under `/website/…` in the app.
 
+## Accessibility
+
+`block--swiper-bg` treats its slides as **purely decorative** background images:
+the images are rendered with `alt=""`, and the slide wrapper, navigation arrows
+and pagination are intentionally hidden from screen readers and keyboard users
+(`aria-hidden="true"`, `tabindex="-1"`). The actual content (headline, text,
+buttons) lives outside the hidden wrapper and remains fully accessible.
+
+**Do not use `block--swiper-bg` for images that carry meaning** — those users
+must be able to perceive. Use one of the other swiper blocks for content-bearing
+images instead.
+
+The autoplay toggle buttons (`block--swiper-bg`, `block--swiper-hero`) implement
+the WCAG 2.2.2 pause mechanism and are only rendered when autoplay is enabled.
+
 ## License
 
 Proprietary — Copyright (c) depa Berlin GmbH & Co. KG. All rights reserved.
