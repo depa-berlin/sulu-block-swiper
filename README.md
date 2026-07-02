@@ -67,6 +67,18 @@ bin/console assets:install
 - The stylesheets and the JS for the other blocks (`block--swiper-bg`, `block--swiper-hero`,
   `block--swiper-3-image`) are currently still expected under `/website/…` in the app.
 
+## Required image formats
+
+The block templates render `<img>`/`<picture>` tags using the following Sulu
+image formats. They must be defined in the app (`config/image-formats.xml`),
+otherwise rendering fails with missing thumbnail keys:
+
+| Block | Formats | Used for |
+|---|---|---|
+| `block--swiper-slide-facts` | `content-image` | slide image |
+| `block--swiper-3-image-slide` | `card-lg`, `card-md`, `card-xs` | `<picture>` sources: ≥ 768 px, ≥ 576 px, fallback |
+| `block--swiper-bg-slide` | `1920x`, `1400x`, `1200x`, `992x`, `767x` | `<picture>` sources: ≥ 1400 px, ≥ 1200 px, ≥ 992 px, ≥ 576 px, fallback |
+
 ## Accessibility
 
 `block--swiper-bg` treats its slides as **purely decorative** background images:

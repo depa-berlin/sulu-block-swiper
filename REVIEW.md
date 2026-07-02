@@ -148,9 +148,11 @@ Stand: Branch `main` (eb845ae).
   Ist Pflichtabhängigkeit (composer.json), fehlt aber unter „Requirements“; das
   `bundles.php`-Beispiel registriert das ContentBundle ebenfalls nicht.
 
-- [ ] **4.2 — README: benötigte Bild-Formate dokumentieren**
+- [x] **4.2 — README: benötigte Bild-Formate dokumentieren**
   Templates setzen `content-image`, `card-lg`/`card-md`/`card-xs` und
   `1920x`/`1400x`/`1200x`/`992x`/`767x` voraus — nirgends dokumentiert.
+  → README-Abschnitt „Required image formats“ mit Tabelle (Block → Formate →
+  Verwendung/Breakpoints) ergänzt.
 
 - [x] **4.3 — Konsistenz-Tests ergänzen**
   - XML-`<key>` == Dateiname für alle Block-XMLs
