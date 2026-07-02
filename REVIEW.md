@@ -39,10 +39,11 @@ Stand: Branch `main` (eb845ae).
   → Entschieden: als Slide-Typ in `block--swiper` registriert; Root-Element des
   Templates trägt jetzt die `swiper-slide`-Klasse.
 
-- [ ] **1.6 — Video-Medien erzeugen kaputte Ausgabe in `block--swiper-slide-facts`**
+- [x] **1.6 — Video-Medien erzeugen kaputte Ausgabe in `block--swiper-slide-facts`**
   `block--swiper-slide-facts.xml:20` erlaubt `types="image,video"`, das Template rendert
   aber immer `<img>` mit `image.thumbnails['content-image']`.
-  → Entweder `types="image"` einschränken oder Video-Rendering im Template ergänzen.
+  → Entschieden: `types="image"` eingeschränkt (Videos wurden vom Template nie
+  unterstützt). Bestandsinhalte mit bereits ausgewähltem Video ggf. manuell prüfen.
 
 - [ ] **1.7 — Ungültiger `loading`-Wert „auto“**
   `block--swiper-slide-facts.xml:82`: Die Option `auto` ist kein gültiger Wert des
