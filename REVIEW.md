@@ -8,7 +8,7 @@ Stand: Branch `main` (eb845ae).
 
 ## 1. Funktionale Probleme (hohe Priorität)
 
-- [ ] **1.1 — `block--swiper` ignoriert seine komplette Slider-Konfiguration**
+- [x] **1.1 — `block--swiper` ignoriert seine komplette Slider-Konfiguration**
   `Resources/config/blocks/block--swiper.xml` (Zeilen 31–129) definiert `effect`, `loop`,
   `autoplay`, `autoplay_delay`, `speed`, `show_navigation`, `show_pagination` — aber
   `Resources/views/includes/blocks/block--swiper.html.twig` gibt kein einziges
