@@ -83,9 +83,10 @@ Stand: Branch `main` (eb845ae).
   `block--swiper` und `block--swiper-hero` auf `|trans`-Schlüssel umstellen
   (aus Review 3.1, Variante 2).
 
-- [ ] **2.2 — Asset-Loading in `block--swiper.html.twig` angleichen**
+- [x] **2.2 — Asset-Loading in `block--swiper.html.twig` angleichen**
   Lädt als einziges Template `swiper-lib.js` ohne `defer: true` und kein
   `swiper-lib.css` (nur ein eigenes `block--swiper.css`).
+  → `swiper-lib.css` ergänzt, `swiper-lib.js` lädt mit `defer` wie überall sonst.
 
 - [x] **2.3 — Autoplay-Toggle-Verhalten angleichen**
   `block--swiper-bg` rendert den Pause-Button nur bei `autoplay == true` (Zeile 56),
@@ -93,20 +94,24 @@ Stand: Branch `main` (eb845ae).
   → Hero an das bg-Muster angeglichen: Toggle nur bei aktivem Autoplay
   (WCAG 2.2.2 — Pause-Mechanismus nur nötig, wenn sich etwas bewegt).
 
-- [ ] **2.4 — `loop`-Shadowing beseitigen**
+- [x] **2.4 — `loop`-Shadowing beseitigen**
   In `block--swiper-3-image.html.twig:3`, `block--swiper-bg.html.twig:4` und
   `block--swiper-hero.html.twig:4` überschreibt `{% set loop = content.loop ?? true %}`
   Twigs reservierte `loop`-Variable. Funktioniert aktuell (Twig-`loop` gewinnt in der
   `for`-Schleife), ist aber eine Stolperfalle.
   → Umbenennen in z. B. `loop_enabled`.
+  → In allen vier Templates umbenannt (`swiper` und `3-image` bereits mit 1.1/1.2,
+  `bg` und `hero` jetzt).
 
 - [ ] **2.5 — Checkbox-Definitionen in `block--swiper-3-image.xml` angleichen**
   Bei `loop`/`show_navigation`/`show_pagination` fehlen die `toggler`/`default_value`-
   Params, die alle anderen Blöcke haben.
 
-- [ ] **2.6 — `config`-Sektion (attr_class) in `block--swiper-3-image.xml` ergänzen**
+- [x] **2.6 — `config`-Sektion (attr_class) in `block--swiper-3-image.xml` ergänzen**
   Das Template referenziert `content.attr_class`, das XML definiert die Property nicht
   (durch `|default('')` derzeit unschädlich).
+  → `config`-Sektion mit `attr_class`-XInclude ergänzt (inkl. fehlendem
+  `xmlns:xi`-Namespace am Root).
 
 - [ ] **2.7 — Übrige Block-Assets ins Bundle verlagern**
   `block--swiper.js` liegt inzwischen im Bundle (`Resources/public/js/`, ausgeliefert
