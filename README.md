@@ -52,6 +52,20 @@ Depa\SuluBlockHelperBundle\SuluBlockHelperBundle::class => ['all' => true],
 Depa\SuluBlockSwiperBundle\SuluBlockSwiperBundle::class => ['all' => true],
 ```
 
+Publish the bundle assets (JS under `/bundles/sulublockswiper/`):
+
+```bash
+bin/console assets:install
+```
+
+## Assets
+
+- `Resources/public/js/block--swiper.js` — Swiper initialization for `block--swiper`;
+  reads the block settings from the `data-*` attributes rendered by the template.
+  Requires Swiper.js (`swiper-lib.js`) to be provided by the app.
+- The stylesheets and the JS for the other blocks (`block--swiper-bg`, `block--swiper-hero`,
+  `block--swiper-3-image`) are currently still expected under `/website/…` in the app.
+
 ## License
 
 Proprietary — Copyright (c) depa Berlin GmbH & Co. KG. All rights reserved.

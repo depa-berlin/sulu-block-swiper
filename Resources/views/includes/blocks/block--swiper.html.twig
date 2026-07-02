@@ -9,7 +9,7 @@
     {% set show_pagination = content.show_pagination ?? true %}
     {% do asset_collector.addAsset('/website/styles/block--swiper.css', {'media': 'screen'}, true) %}
     {% do asset_collector.addAsset('/website/js/swiper-lib.js', {}, true) %}
-    {% do asset_collector.addAsset('/website/js/block--swiper.js', {}, true) %}
+    {% do asset_collector.addAsset('/bundles/sulublockswiper/js/block--swiper.js', {defer: true}, true) %}
     <div class="block--swiper swiper {{ content.attr_class|default('') }}"
          data-effect="{{ effect }}"
          data-loop="{{ loop_enabled ? 'true' : 'false' }}"

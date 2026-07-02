@@ -90,6 +90,14 @@ Stand: Branch `main` (eb845ae).
   Das Template referenziert `content.attr_class`, das XML definiert die Property nicht
   (durch `|default('')` derzeit unschädlich).
 
+- [ ] **2.7 — Übrige Block-Assets ins Bundle verlagern**
+  `block--swiper.js` liegt inzwischen im Bundle (`Resources/public/js/`, ausgeliefert
+  unter `/bundles/sulublockswiper/`). Die Stylesheets sowie das JS der übrigen Blöcke
+  (`block--swiper-bg.js`, `block--swiper-hero.js`, `block--swiper-3-image.js`,
+  `block--swiper*.css`) werden weiterhin unter `/website/…` aus der App erwartet.
+  → Aus der App ins Bundle übernehmen und Asset-Pfade in den Templates umstellen
+  (`swiper-lib.js`/`swiper-lib.css` bleiben App-Sache).
+
 ## 3. Barrierefreiheit (bewusst entscheiden)
 
 - [ ] **3.1 — `aria-hidden`-Strategie in `block--swiper-bg` dokumentieren oder vereinheitlichen**
