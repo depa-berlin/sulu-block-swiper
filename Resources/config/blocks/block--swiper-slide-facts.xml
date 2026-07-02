@@ -79,12 +79,6 @@
                                     <title lang="de">bevorzugt</title>
                                 </meta>
                             </param>
-                            <param name="auto">
-                                <meta>
-                                    <title lang="en">automatically</title>
-                                    <title lang="de">automatisch</title>
-                                </meta>
-                            </param>
                         </param>
                     </params>
                 </property>

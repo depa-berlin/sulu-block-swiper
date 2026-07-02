@@ -2,6 +2,7 @@
     {% set block_id = content._id|default %}
     {% set image = sulu_resolve_media(content.image, app.request.locale) %}
     {% set loading = content.loading|default('lazy') %}
+    {% if loading not in ['lazy', 'eager'] %}{% set loading = 'lazy' %}{% endif %}
     <div class="block--swiper-slide-content-facts swiper-slide {{ content.attr_class|default('') }}" data-cms-block-id="{{ block_id }}" {{ sulu_block_preview(content) }}>
         {% if image %}
                 <img src="{{ image.thumbnails['content-image'] }}" class="img-fluid"

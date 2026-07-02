@@ -45,10 +45,11 @@ Stand: Branch `main` (eb845ae).
   → Entschieden: `types="image"` eingeschränkt (Videos wurden vom Template nie
   unterstützt). Bestandsinhalte mit bereits ausgewähltem Video ggf. manuell prüfen.
 
-- [ ] **1.7 — Ungültiger `loading`-Wert „auto“**
+- [x] **1.7 — Ungültiger `loading`-Wert „auto“**
   `block--swiper-slide-facts.xml:82`: Die Option `auto` ist kein gültiger Wert des
   HTML-`loading`-Attributs (nur `lazy`/`eager`).
-  → Option entfernen (auch im Fragment prüfen, falls andere Pakete es nutzen).
+  → Option entfernt (`config_image.xml`-Fragment war nicht betroffen). Template
+  normalisiert gespeicherte Altwerte auf `lazy`.
 
 - [ ] **1.8 — Robustheit in `block--swiper-slide.html.twig`**
   - Zeile 3: `content.attr_class` ohne `|default('')` (einziges Template ohne Guard).
