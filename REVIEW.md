@@ -164,9 +164,12 @@ Stand: Branch `main` (eb845ae).
 - [ ] **4.5 — CI: PHP 8.4 in die Matrix aufnehmen**
   `composer.json` erlaubt `^8.2`, Matrix endet bei 8.3.
 
-- [ ] **4.6 — CI: Composer-Auth für private VCS-Repos prüfen**
+- [x] **4.6 — CI: Composer-Auth für private VCS-Repos prüfen**
   Falls `sulu-block-helper`/`sulu-block-content` privat sind, braucht
   `composer install` in Actions ein Token — im Workflow ist keines konfiguriert.
+  → Geprüft: CI auf `main` läuft grün (zuletzt Run 23, 2026-06-18), `composer
+  install` funktioniert in Actions ohne Token — kein Handlungsbedarf. Erneut
+  prüfen, falls die Abhängigkeits-Repos später auf privat umgestellt werden.
 
 ---
 
