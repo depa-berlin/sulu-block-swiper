@@ -82,9 +82,11 @@ Stand: Branch `main` (eb845ae).
   Lädt als einziges Template `swiper-lib.js` ohne `defer: true` und kein
   `swiper-lib.css` (nur ein eigenes `block--swiper.css`).
 
-- [ ] **2.3 — Autoplay-Toggle-Verhalten angleichen**
+- [x] **2.3 — Autoplay-Toggle-Verhalten angleichen**
   `block--swiper-bg` rendert den Pause-Button nur bei `autoplay == true` (Zeile 56),
   `block--swiper-hero` rendert ihn immer.
+  → Hero an das bg-Muster angeglichen: Toggle nur bei aktivem Autoplay
+  (WCAG 2.2.2 — Pause-Mechanismus nur nötig, wenn sich etwas bewegt).
 
 - [ ] **2.4 — `loop`-Shadowing beseitigen**
   In `block--swiper-3-image.html.twig:3`, `block--swiper-bg.html.twig:4` und

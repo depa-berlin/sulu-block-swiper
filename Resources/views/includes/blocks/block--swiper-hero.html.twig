@@ -35,12 +35,14 @@
         <button class="swiper-button-next" type="button" aria-label="Next slide"></button>
         <button class="swiper-button-prev" type="button" aria-label="Previous slide"></button>
 
-        <button class="block--swiper-hero__autoplay-toggle"
-                type="button"
-                aria-pressed="{{ autoplay ? 'true' : 'false' }}"
-                aria-label="{{ autoplay ? ('website.swiper.autoplay.pause'|trans) : ('website.swiper.autoplay.play'|trans) }}"
-                data-label-play="{{ 'website.swiper.autoplay.play'|trans }}"
-                data-label-pause="{{ 'website.swiper.autoplay.pause'|trans }}"></button>
+        {% if autoplay %}
+            <button class="block--swiper-hero__autoplay-toggle"
+                    type="button"
+                    aria-pressed="true"
+                    aria-label="{{ 'website.swiper.autoplay.pause'|trans }}"
+                    data-label-play="{{ 'website.swiper.autoplay.play'|trans }}"
+                    data-label-pause="{{ 'website.swiper.autoplay.pause'|trans }}"></button>
+        {% endif %}
 
         <div class="swiper-pagination"></div>
     </div>
