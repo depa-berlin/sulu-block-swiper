@@ -6,6 +6,50 @@ Stand: Branch `main` (eb845ae).
 
 ---
 
+## Bearbeitungsstand (2026-07-03)
+
+Abgearbeitet auf Branch `claude/complete-review-b1fx31`. **21 von 26 Punkten erledigt.**
+
+**Erledigt:**
+- **Abschnitt 1 komplett** (1.1–1.9): Alle vier Container verdrahten jetzt ihre
+  Slider-Einstellungen als `data-*`-Attribute; `speed` im 3-Image als `number`;
+  Hero-Fallbacks korrigiert; `block--swiper-slide` als Slide-Typ registriert;
+  Facts-Slide auf Bilder eingeschränkt und `loading`-Altwerte normalisiert;
+  Link-Rendering robuster (kein leeres `target`, `rel="noopener noreferrer"` bei
+  `_blank`); `block--hero-content` als `depa/sulu-block-hero`-Abhängigkeit deklariert.
+- **2.2** Asset-Loading angeglichen · **2.3** Autoplay-Toggle nur bei aktivem Autoplay
+  (WCAG 2.2.2) · **2.4** `loop`-Shadowing in allen Templates beseitigt · **2.6**
+  `attr_class`-Config im 3-Image ergänzt · **2.7 teilweise:** Swiper.js 14.0.1 ins
+  Bundle vendored (`Resources/public/vendor/swiper/`).
+- **3.1** `aria-hidden`-Strategie des bg-Sliders dokumentiert (Template-Kommentar +
+  README „Accessibility“).
+- **4.1** README-Requirements/`bundles.php` vervollständigt · **4.2** benötigte
+  Bild-Formate dokumentiert · **4.3** Konsistenz-Tests
+  (`BlockConfigConsistencyTest`) · **4.4** CI-Lint (XML-Job + Twig-Syntax-Test) ·
+  **4.5** PHP 8.4 in der Matrix · **4.6** CI-Composer-Auth geprüft (kein Bedarf).
+
+**Verifikation:** Twig-Render-Harness (73 Assertions), PHPUnit-Tests im Bundle
+(34 Tests / 132 Assertions, u. a. unter PHP 8.4) sowie ein Browser-Integrationstest
+des gebündelten Swiper 14 mit `block--swiper.js` (Init, Navigation, Pagination,
+Autoplay, realer Slide-Wechsel) — alles grün. Die Test-Harness liegt im
+Session-Scratchpad; ihre Überführung in echte Bundle-Tests ist als Teil von 4.3
+möglich (bislang nur Lint- und Konsistenz-Tests eingecheckt).
+
+**Noch offen (warten auf Input/App-Zugriff):**
+- **2.1** — Übersetzungs-Namespace (`website.swiper.*` vs. `website.page.swiper.*`);
+  wartet auf Projekt-Abgleich. Enthält auch die übersetzbaren `aria-label`s aus 3.1.
+- **2.5** — Checkbox-Defaults im 3-Image angleichen; kleine Entscheidung nötig
+  (sollen `loop`/`show_navigation`/`show_pagination` Default *an* bekommen? Dann
+  ziehen die Template-Fallbacks mit).
+- **2.7 (Rest) / 2.8** — block-spezifisches CSS/JS (`block--swiper-bg.js`,
+  `-hero.js`, `-3-image.js`, `block--swiper*.css`) ins Bundle übernehmen und das
+  neu geschriebene `block--swiper.js` mit dem App-Original abgleichen. Braucht die
+  sieben App-Dateien (kein Repo-Zugriff in dieser Session).
+- **3.2** — Einheitliches Karussell-A11y-Muster über das Swiper-`a11y`-Modul; sinnvoll
+  erst nach 2.7/2.8, da primär in den Block-Scripts umzusetzen.
+
+---
+
 ## 1. Funktionale Probleme (hohe Priorität)
 
 - [x] **1.1 — `block--swiper` ignoriert seine komplette Slider-Konfiguration**
