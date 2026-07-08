@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php: ['8.2', '8.3']
+        php: ['8.2', '8.3', '8.4']
 
     steps:
       - uses: actions/checkout@v4
@@ -28,6 +28,30 @@ jobs:
 
       - name: Run PHPUnit
         run: vendor/bin/phpunit
+
+  lint-xml:
+    name: Lint XML
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install xmllint
+        run: sudo apt-get update && sudo apt-get install -y libxml2-utils
+
+      - name: Lint block configs (incl. XInclude resolution)
+        run: |
+          set -e
+          for f in config/blocks/*.xml; do
+            xmllint --noout --xinclude "$f"
+          done
+
+      - name: Lint fragments
+        run: |
+          set -e
+          for f in config/_fragments/*.xml; do
+            xmllint --noout "$f"
+          done
 
   phpstan:
     name: PHPStan

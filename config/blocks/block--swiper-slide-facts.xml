@@ -17,7 +17,7 @@
             <properties>
                 <property name="image" type="single_media_selection">
                     <params>
-                        <param name="types" value="image,video"/>
+                        <param name="types" value="image"/>
                         <param name="displayOptions" type="collection">
                             <param name="leftTop" value="true"/>
                             <param name="top" value="true"/>
@@ -77,12 +77,6 @@
                                 <meta>
                                     <title lang="en">eager</title>
                                     <title lang="de">bevorzugt</title>
-                                </meta>
-                            </param>
-                            <param name="auto">
-                                <meta>
-                                    <title lang="en">automatically</title>
-                                    <title lang="de">automatisch</title>
                                 </meta>
                             </param>
                         </param>

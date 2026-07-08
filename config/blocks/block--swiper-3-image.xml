@@ -1,6 +1,7 @@
 <?xml version="1.0" ?>
 <template xmlns="http://schemas.sulu.io/template/template"
           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
           xsi:schemaLocation="http://schemas.sulu.io/template/template http://schemas.sulu.io/template/template-1.0.xsd">
     <key>block--swiper-3-image</key>
     <meta>
@@ -27,13 +28,14 @@
                 <title lang="de">Loop</title>
             </meta>
         </property>
-        <property name="speed" type="text_line">
+        <property name="speed" type="number">
             <meta>
                 <title lang="en">Speed (ms)</title>
                 <title lang="de">Geschwindigkeit (ms)</title>
             </meta>
             <params>
-                <param name="placeholder" value="600"/>
+                <param name="min" value="100"/>
+                <param name="max" value="3000"/>
             </params>
         </property>
 
@@ -67,6 +69,17 @@
                 <title lang="de">Slides zentriert</title>
             </meta>
         </property>
+
+        <section name="config">
+            <meta>
+                <title lang="en">Config</title>
+                <title lang="de">Einstellungen</title>
+            </meta>
+            <properties>
+                <xi:include href="../_fragments/attr_class.xml" xpointer="xmlns(sulu=http://schemas.sulu.io/template/template)
+                      xpointer(/sulu:properties/*)"/>
+            </properties>
+        </section>
 
     </properties>
 </template>

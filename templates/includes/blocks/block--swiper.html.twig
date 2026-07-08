@@ -1,9 +1,26 @@
 {% block swiper %}
     {% set block_id = content._id|default %}
+    {% set effect = content.effect|default('fade') %}
+    {% set loop_enabled = content.loop ?? true %}
+    {% set autoplay = content.autoplay ?? true %}
+    {% set autoplay_delay = content.autoplay_delay|default(5000) %}
+    {% set speed = content.speed|default(600) %}
+    {% set show_navigation = content.show_navigation ?? true %}
+    {% set show_pagination = content.show_pagination ?? true %}
+    {% do asset_collector.addAsset('/bundles/sulublockswiper/vendor/swiper/swiper-bundle.min.css', {'media': 'screen'}, true) %}
     {% do asset_collector.addAsset('/website/styles/block--swiper.css', {'media': 'screen'}, true) %}
-    {% do asset_collector.addAsset('/website/js/swiper-lib.js', {}, true) %}
-    {% do asset_collector.addAsset('/website/js/block--swiper.js', {}, true) %}
-    <div class="block--swiper swiper {{ content.attr_class|default('') }}" data-cms-block-id="{{ block_id }}"  {{ sulu_block_preview(content) }}>
+    {% do asset_collector.addAsset('/bundles/sulublockswiper/vendor/swiper/swiper-bundle.min.js', {defer: true}, true) %}
+    {% do asset_collector.addAsset('/bundles/sulublockswiper/js/block--swiper.js', {defer: true}, true) %}
+    <div class="block--swiper swiper {{ content.attr_class|default('') }}"
+         data-effect="{{ effect }}"
+         data-loop="{{ loop_enabled ? 'true' : 'false' }}"
+         data-autoplay="{{ autoplay ? 'true' : 'false' }}"
+         data-autoplay-delay="{{ autoplay_delay }}"
+         data-speed="{{ speed }}"
+         data-show-navigation="{{ show_navigation ? 'true' : 'false' }}"
+         data-show-pagination="{{ show_pagination ? 'true' : 'false' }}"
+         data-cms-block-id="{{ block_id }}"
+         {{ sulu_block_preview(content) }}>
         <div class="swiper-wrapper">
             {% for block in content.blocks|default([]) %}
                 {% include 'includes/blocks/' ~ block.type ~ '.html.twig' with {
@@ -13,9 +30,13 @@
             {% endfor %}
         </div>
 
-        <button type="button" class="swiper-button-next" aria-label="Next slide"></button>
-        <button type="button" class="swiper-button-prev" aria-label="Previous slide"></button>
+        {% if show_navigation %}
+            <button type="button" class="swiper-button-next" aria-label="Next slide"></button>
+            <button type="button" class="swiper-button-prev" aria-label="Previous slide"></button>
+        {% endif %}
 
-        <div class="swiper-pagination"></div>
+        {% if show_pagination %}
+            <div class="swiper-pagination"></div>
+        {% endif %}
     </div>
 {% endblock %}

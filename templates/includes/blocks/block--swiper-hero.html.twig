@@ -1,24 +1,26 @@
 {% block swiper_hero %}
     {% set block_id = content._id|default %}
     {% set effect = content.effect|default('fade') %}
-    {% set loop = content.loop ?? true %}
+    {% set loop_enabled = content.loop ?? true %}
     {% set autoplay = content.autoplay ?? true %}
     {% set autoplay_delay = content.autoplay_delay|default(5000) %}
     {% set speed = content.speed|default(600) %}
+    {% set show_navigation = content.show_navigation ?? true %}
+    {% set show_pagination = content.show_pagination ?? true %}
 
-    {% do asset_collector.addAsset('/website/styles/swiper-lib.css', {'media': 'screen'}, true) %}
+    {% do asset_collector.addAsset('/bundles/sulublockswiper/vendor/swiper/swiper-bundle.min.css', {'media': 'screen'}, true) %}
     {% do asset_collector.addAsset('/website/styles/block--swiper-hero.css', {'media': 'screen'}, true) %}
-    {% do asset_collector.addAsset('/website/js/swiper-lib.js', {defer: true}, true) %}
+    {% do asset_collector.addAsset('/bundles/sulublockswiper/vendor/swiper/swiper-bundle.min.js', {defer: true}, true) %}
     {% do asset_collector.addAsset('/website/js/block--swiper-hero.js', {defer: true}, true) %}
 
     <div class="block--swiper-hero swiper {{ content.attr_class|default('') }}"
          data-effect="{{ effect }}"
-         data-loop="{{ loop ? 'true' : 'false' }}"
+         data-loop="{{ loop_enabled ? 'true' : 'false' }}"
          data-autoplay="{{ autoplay ? 'true' : 'false' }}"
          data-autoplay-delay="{{ autoplay_delay }}"
          data-speed="{{ speed }}"
-         data-show-navigation="{{ content.show_navigation ? 'true' : 'false' }}"
-         data-show-pagination="{{ content.show_pagination ? 'true' : 'false' }}"
+         data-show-navigation="{{ show_navigation ? 'true' : 'false' }}"
+         data-show-pagination="{{ show_pagination ? 'true' : 'false' }}"
          data-cms-block-id="{{ block_id }}"
          {{ sulu_block_preview(content) }}>
 
@@ -33,12 +35,14 @@
         <button class="swiper-button-next" type="button" aria-label="Next slide"></button>
         <button class="swiper-button-prev" type="button" aria-label="Previous slide"></button>
 
-        <button class="block--swiper-hero__autoplay-toggle"
-                type="button"
-                aria-pressed="{{ autoplay ? 'true' : 'false' }}"
-                aria-label="{{ autoplay ? ('website.swiper.autoplay.pause'|trans) : ('website.swiper.autoplay.play'|trans) }}"
-                data-label-play="{{ 'website.swiper.autoplay.play'|trans }}"
-                data-label-pause="{{ 'website.swiper.autoplay.pause'|trans }}"></button>
+        {% if autoplay %}
+            <button class="block--swiper-hero__autoplay-toggle"
+                    type="button"
+                    aria-pressed="true"
+                    aria-label="{{ 'website.swiper.autoplay.pause'|trans }}"
+                    data-label-play="{{ 'website.swiper.autoplay.play'|trans }}"
+                    data-label-pause="{{ 'website.swiper.autoplay.pause'|trans }}"></button>
+        {% endif %}
 
         <div class="swiper-pagination"></div>
     </div>

@@ -1,19 +1,19 @@
 {% block swiper_bg %}
     {% set block_id = content._id|default %}
     {% set effect = content.effect|default('fade') %}
-    {% set loop = content.loop ?? true %}
+    {% set loop_enabled = content.loop ?? true %}
     {% set autoplay = content.autoplay ?? true %}
     {% set autoplay_delay = content.autoplay_delay|default(5000) %}
     {% set speed = content.speed|default(600) %}
     {% set show_navigation = content.show_navigation ?? true %}
     {% set show_pagination = content.show_pagination ?? true %}
-    {% do asset_collector.addAsset('/website/styles/swiper-lib.css', {media: 'screen'}, true) %}
+    {% do asset_collector.addAsset('/bundles/sulublockswiper/vendor/swiper/swiper-bundle.min.css', {media: 'screen'}, true) %}
     {% do asset_collector.addAsset('/website/styles/block--swiper-bg.css', {media: 'screen'}, true) %}
-    {% do asset_collector.addAsset('/website/js/swiper-lib.js', {defer: true}, true) %}
+    {% do asset_collector.addAsset('/bundles/sulublockswiper/vendor/swiper/swiper-bundle.min.js', {defer: true}, true) %}
     {% do asset_collector.addAsset('/website/js/block--swiper-bg.js', {defer: true}, true) %}
     <div class="block--swiper-bg swiper {{ content.attr_class|default('') }}"
          data-effect="{{ effect }}"
-         data-loop="{{ loop ? 'true' : 'false' }}"
+         data-loop="{{ loop_enabled ? 'true' : 'false' }}"
          data-autoplay="{{ autoplay ? 'true' : 'false' }}"
          data-autoplay-delay="{{ autoplay_delay }}"
          data-speed="{{ speed }}"
@@ -22,6 +22,11 @@
          data-cms-block-id="{{ block_id }}"
          {{ sulu_block_preview(content) }}>
 
+        {# Die Slides sind rein dekorative Hintergrundbilder (alt="" im Slide-Template).
+           Wrapper, Navigation und Pagination sind deshalb bewusst per aria-hidden /
+           tabindex="-1" aus Screenreader- und Tastaturbedienung genommen; der inhaltliche
+           Text liegt zugänglich außerhalb des Wrappers in .block--swiper-bg__text.
+           Diesen Block NICHT für inhaltstragende Bilder verwenden — siehe README. #}
         <div class="swiper-wrapper" aria-hidden="true">
             {% for slide in content.slides|default([]) %}
                 {{ include('includes/blocks/' ~ slide.type ~ '.html.twig', {
