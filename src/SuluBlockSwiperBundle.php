@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Depa\SuluBlockSwiperBundle;
 
-use Symfony\Component\HttpKernel\Bundle\Bundle;
+use Depa\SuluBlockHelperBundle\AbstractBlockBundle;
 
-class SuluBlockSwiperBundle extends Bundle
+class SuluBlockSwiperBundle extends AbstractBlockBundle
 {
 }

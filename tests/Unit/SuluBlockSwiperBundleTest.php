@@ -2,32 +2,37 @@
 
 declare(strict_types=1);
 
-namespace Depa\SuluBlockSwiperBundle\Tests\Unit\DependencyInjection;
+namespace Depa\SuluBlockSwiperBundle\Tests\Unit;
 
-use Depa\SuluBlockSwiperBundle\DependencyInjection\SuluBlockSwiperExtension;
+use Depa\SuluBlockSwiperBundle\SuluBlockSwiperBundle;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
-class SuluBlockSwiperExtensionTest extends TestCase
+class SuluBlockSwiperBundleTest extends TestCase
 {
     private ContainerBuilder $container;
-    private SuluBlockSwiperExtension $extension;
+    private SuluBlockSwiperBundle $bundle;
 
     protected function setUp(): void
     {
         $this->container = new ContainerBuilder();
-        $this->extension = new SuluBlockSwiperExtension();
+        $this->bundle = new SuluBlockSwiperBundle();
+    }
+
+    private function load(): void
+    {
+        $this->bundle->getContainerExtension()->load([], $this->container);
     }
 
     public function testLoadSetsBundleMetadataParameter(): void
     {
-        $this->extension->load([], $this->container);
+        $this->load();
         self::assertTrue($this->container->hasParameter('sulu_block_swiper.bundle_metadata'));
     }
 
     public function testBundleMetadataHasRequiredKeys(): void
     {
-        $this->extension->load([], $this->container);
+        $this->load();
         $meta = $this->container->getParameter('sulu_block_swiper.bundle_metadata');
         self::assertIsArray($meta);
         self::assertArrayHasKey('bundle', $meta);
@@ -38,7 +43,7 @@ class SuluBlockSwiperExtensionTest extends TestCase
 
     public function testBundleMetadataContainsCorrectBundleName(): void
     {
-        $this->extension->load([], $this->container);
+        $this->load();
         $meta = $this->container->getParameter('sulu_block_swiper.bundle_metadata');
         self::assertIsArray($meta);
         self::assertSame('SuluBlockSwiperBundle', $meta['bundle']);
@@ -46,7 +51,7 @@ class SuluBlockSwiperExtensionTest extends TestCase
 
     public function testBundleMetadataContainsCorrectPackageName(): void
     {
-        $this->extension->load([], $this->container);
+        $this->load();
         $meta = $this->container->getParameter('sulu_block_swiper.bundle_metadata');
         self::assertIsArray($meta);
         self::assertSame('depa/sulu-block-swiper', $meta['package']);
@@ -54,7 +59,7 @@ class SuluBlockSwiperExtensionTest extends TestCase
 
     public function testBundleMetadataContainsAtLeastOneBlock(): void
     {
-        $this->extension->load([], $this->container);
+        $this->load();
         $meta = $this->container->getParameter('sulu_block_swiper.bundle_metadata');
         self::assertIsArray($meta);
         self::assertNotEmpty($meta['blocks']);
@@ -62,7 +67,7 @@ class SuluBlockSwiperExtensionTest extends TestCase
 
     public function testBlocksAreSortedAndUnique(): void
     {
-        $this->extension->load([], $this->container);
+        $this->load();
         $meta = $this->container->getParameter('sulu_block_swiper.bundle_metadata');
         self::assertIsArray($meta);
         $blocks = $meta['blocks'];
@@ -74,7 +79,7 @@ class SuluBlockSwiperExtensionTest extends TestCase
 
     public function testKnownSwiperBlocksArePresent(): void
     {
-        $this->extension->load([], $this->container);
+        $this->load();
         $meta = $this->container->getParameter('sulu_block_swiper.bundle_metadata');
         self::assertIsArray($meta);
 
@@ -85,7 +90,7 @@ class SuluBlockSwiperExtensionTest extends TestCase
 
     public function testSwiperHasChildrenFromXml(): void
     {
-        $this->extension->load([], $this->container);
+        $this->load();
         $meta = $this->container->getParameter('sulu_block_swiper.bundle_metadata');
         self::assertIsArray($meta);
 
@@ -95,7 +100,7 @@ class SuluBlockSwiperExtensionTest extends TestCase
 
     public function testChildrenValuesAreArraysOfStrings(): void
     {
-        $this->extension->load([], $this->container);
+        $this->load();
         $meta = $this->container->getParameter('sulu_block_swiper.bundle_metadata');
         self::assertIsArray($meta);
 
