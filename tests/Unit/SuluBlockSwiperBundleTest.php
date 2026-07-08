@@ -7,6 +7,7 @@ namespace Depa\SuluBlockSwiperBundle\Tests\Unit;
 use Depa\SuluBlockSwiperBundle\SuluBlockSwiperBundle;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
 
 class SuluBlockSwiperBundleTest extends TestCase
 {
@@ -25,7 +26,9 @@ class SuluBlockSwiperBundleTest extends TestCase
 
     private function load(): void
     {
-        $this->bundle->getContainerExtension()->load([], $this->container);
+        $extension = $this->bundle->getContainerExtension();
+        self::assertInstanceOf(ExtensionInterface::class, $extension);
+        $extension->load([], $this->container);
     }
 
     public function testLoadSetsBundleMetadataParameter(): void
